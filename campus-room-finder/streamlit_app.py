@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from pathlib import Path
@@ -12,7 +11,7 @@ st.title("🧭 Campus Room Finder (Free OSM + OSRM Directions)")
 st.write("Search for a room and get real walking directions (powered by OpenStreetMap & OSRM).")
 
 # --- DATA ---
-DATA_PATH = Path("rooms.xlsx")
+DATA_PATH = Path(__file__).parent / "rooms.xlsx"   # always load from app directory
 
 @st.cache_data
 def load_rooms(path: Path):
@@ -21,11 +20,7 @@ def load_rooms(path: Path):
     return df
 
 if not DATA_PATH.exists():
-    st.info("Upload your rooms.xlsx file (columns: room_id, room_name, building, floor, lat, lon).")
-    up = st.file_uploader("Upload Excel", type=["xlsx"])
-    if up:
-        DATA_PATH.write_bytes(up.read())
-        st.rerun()
+    st.error("❌ rooms.xlsx not found in the app directory. Please add it and restart.")
     st.stop()
 
 rooms = load_rooms(DATA_PATH)
