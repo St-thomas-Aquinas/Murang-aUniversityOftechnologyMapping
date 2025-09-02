@@ -5,102 +5,51 @@ from streamlit_folium import st_folium
 from streamlit_js_eval import get_geolocation
 import requests
 
-# ============================
-# Load Excel (rooms database)
-# ============================
+# Load rooms data
 @st.cache_data
 def load_rooms():
-    return pd.read_excel("rooms.xlsx")  # file must be in same folder
+    return pd.read_excel("rooms.xlsx")
 
 rooms = load_rooms()
 
-st.title("📍 School Room Finder")
-st.write("Search for a room and get the route from your current location.")
+st.title("Campus Room Finder 🏫")
 
-# ============================
-# User selects room
-# ============================
-room_choice = st.selectbox("Select a room:", rooms["Room"])
+# Show available columns (for debugging if needed)
+# st.write("Excel columns:", rooms.columns.tolist())
 
-# Get destination coordinates
-dest_row = rooms[rooms["Room"] == room_choice].iloc[0]
-dest_lat, dest_lon = dest_row["Latitude"], dest_row["Longitude"]
+# Let user select a room by name
+room_choice = st.selectbox("Select a room:", rooms["room_name"].unique())
+room_row = rooms[rooms["room_name"] == room_choice].iloc[0]
 
-# ============================
-# Get user location (browser)
-# ============================
-loc = get_geolocation()
-if loc is not None:
-    user_lat, user_lon = loc["coords"]["latitude"], loc["coords"]["longitude"]
-    has_coords = True
-else:
-    st.warning("⚠️ Could not get your location. Please allow location access in your browser.")
-    has_coords = False
+room_lat, room_lon = room_row["lat"], room_row["lon"]
 
-# ============================
-# Create map
-# ============================
-m = folium.Map(location=[dest_lat, dest_lon], zoom_start=17)
+# Get user location from browser
+user_loc = get_geolocation()
+if user_loc is not None:
+    user_lat, user_lon = user_loc["coords"]["latitude"], user_loc["coords"]["longitude"]
 
-# Destination marker
-folium.Marker(
-    [dest_lat, dest_lon],
-    popup=f"Room {room_choice}",
-    tooltip=f"Room {room_choice}",
-    icon=folium.Icon(color="red", icon="info-sign")
-).add_to(m)
+    # Call OSRM API for route
+    url = f"http://router.project-osrm.org/route/v1/driving/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
+    response = requests.get(url)
 
-# ============================
-# If user location available
-# ============================
-if has_coords:
-    # User marker
-    folium.Marker(
-        [user_lat, user_lon],
-        popup="You are here",
-        tooltip="Your location",
-        icon=folium.Icon(color="blue", icon="user")
-    ).add_to(m)
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17)
 
-    # --- OSRM ROUTE ---
-    osrm_url = f"http://router.project-osrm.org/route/v1/walking/{user_lon},{user_lat};{dest_lon},{dest_lat}?overview=full&geometries=geojson"
+    # Add markers
+    folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
+    folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
-    try:
-        res = requests.get(osrm_url)
-        data = res.json()
-
-        if "routes" in data and len(data["routes"]) > 0:
-            route = data["routes"][0]["geometry"]["coordinates"]
-
-            if route:
-                # Convert (lon,lat) → (lat,lon)
-                route_latlon = [(lat, lon) for lon, lat in route]
-
-                # Draw polyline
-                folium.PolyLine(
-                    locations=route_latlon,
-                    color="green",
-                    weight=4,
-                    opacity=0.8,
-                    tooltip="Walking route"
-                ).add_to(m)
-
-                # Zoom to fit both markers
-                m.fit_bounds([ [user_lat, user_lon], [dest_lat, dest_lon] ])
-
-                # Show distance + duration
-                distance = data["routes"][0]["distance"] / 1000  # km
-                duration = data["routes"][0]["duration"] / 60    # minutes
-                st.success(f"✅ Route found: **{distance:.2f} km**, about **{duration:.1f} minutes** walking.")
-            else:
-                st.warning("⚠️ No route geometry returned.")
+    # Draw route if found
+    if response.status_code == 200:
+        data = response.json()
+        if data and "routes" in data and len(data["routes"]) > 0:
+            route = data["routes"][0]["geometry"]
+            folium.GeoJson(route, name="route").add_to(m)
         else:
-            st.warning("⚠️ No route found. Try another location.")
+            st.warning("⚠️ No route found between your location and this room.")
+    else:
+        st.error("❌ Error fetching route from OSRM API.")
 
-    except Exception as e:
-        st.error(f"❌ Error fetching route: {e}")
+    st_folium(m, width=700, height=500)
 
-# ============================
-# Show map
-# ============================
-st_data = st_folium(m, width=700, height=500)
+else:
+    st.info("📍 Please allow location access in your browser to see the route.")
