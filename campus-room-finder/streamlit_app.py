@@ -12,68 +12,51 @@ def load_rooms():
 
 rooms = load_rooms()
 
-st.set_page_config(page_title="Campus Room Finder", layout="wide")
-
+# App title
 st.title("🏫 Campus Room Finder")
 
-# Search & filters inside expander (better for mobile)
-with st.expander("🔍 Search & Filters", expanded=True):
-    search_query = st.text_input("Search room name:")
-    building_filter = st.selectbox("Building:", ["All"] + sorted(rooms["building"].unique().tolist()))
-    floor_filter = st.selectbox("Floor:", ["All"] + sorted(rooms["floor"].astype(str).unique().tolist()))
-
-# Apply filters
+# Search and dropdown at top (not sidebar)
+search_query = st.text_input("🔍 Search by room name:")
 filtered_rooms = rooms
 if search_query:
     filtered_rooms = filtered_rooms[filtered_rooms["room_name"].str.contains(search_query, case=False, na=False)]
-if building_filter != "All":
-    filtered_rooms = filtered_rooms[filtered_rooms["building"] == building_filter]
-if floor_filter != "All":
-    filtered_rooms = filtered_rooms[filtered_rooms["floor"].astype(str) == floor_filter]
 
-# Room selection list (mobile friendly)
-room_choice = None
+# Room dropdown
 if not filtered_rooms.empty:
-    st.subheader("Available Rooms")
-    for _, row in filtered_rooms.iterrows():
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            st.markdown(
-                f"""
-                <div style="padding:10px; background:#f9f9f9; border-radius:8px; margin-bottom:8px;
-                            font-size:18px;">
-                    📍 <b>{row['room_name']}</b><br>
-                    🏢 {row['building']} | 🛗 Floor {row['floor']}
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with col2:
-            if st.button("Select", key=row["room_id"]):
-                room_choice = row["room_name"]
+    room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
+    room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
 
-# Continue only if room selected
-if room_choice:
-    room_row = rooms[rooms["room_name"] == room_choice].iloc[0]
     room_lat, room_lon = room_row["lat"], room_row["lon"]
 
-    st.success(f"Showing route to **{room_row['room_name']}**")
+    # Room info card
+    st.markdown(
+        f"""
+        <div style="padding:15px; background:#f9f9f9; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:15px;">
+            <h3 style="margin:0;">📍 {room_row['room_name']}</h3>
+            <p style="margin:0;">🏢 Building: <b>{room_row['building']}</b></p>
+            <p style="margin:0;">🛗 Floor: <b>{room_row['floor']}</b></p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     # Get user location
     user_loc = get_geolocation()
     if user_loc is not None:
         user_lat, user_lon = user_loc["coords"]["latitude"], user_loc["coords"]["longitude"]
 
-        # OSRM route
+        # Request walking route from OSRM API
         url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
         response = requests.get(url)
 
-        # Map setup
+        # Map
         m = folium.Map(location=[user_lat, user_lon], zoom_start=17)
 
+        # Markers
         folium.Marker([user_lat, user_lon], tooltip="📍 You are here", icon=folium.Icon(color="blue")).add_to(m)
         folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
+        # Route drawing
         if response.status_code == 200:
             data = response.json()
             if data and "routes" in data and len(data["routes"]) > 0:
@@ -81,12 +64,22 @@ if room_choice:
                 distance = round(data["routes"][0]["distance"] / 1000, 2)
                 duration = round(data["routes"][0]["duration"] / 60, 1)
 
-                folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 5}).add_to(m)
-                st.info(f"🚶 Distance: **{distance} km** | ⏱ {duration} mins walk")
+                folium.GeoJson(
+                    route, 
+                    name="route", 
+                    style_function=lambda x: {"color": "green", "weight": 4}
+                ).add_to(m)
 
+                # Show distance and time
+                st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
+
+        # Adjust map to fit both points
         m.fit_bounds([[user_lat, user_lon], [room_lat, room_lon]])
-        st_folium(m, width=400, height=500)  # optimized for mobile
+
+        # Show map
+        st_folium(m, width=750, height=520)
+
     else:
-        st.warning("📍 Enable location access to see your route.")
+        st.info("📍 Please allow location access in your browser to see the route.")
 else:
-    st.info("ℹ️ Search and select a room above.")
+    st.warning("⚠️ No rooms found. Try another search.")
