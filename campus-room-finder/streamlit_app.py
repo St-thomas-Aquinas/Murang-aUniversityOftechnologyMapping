@@ -7,7 +7,7 @@ import requests
 
 st.set_page_config(page_title="Campus Room Finder", page_icon="🧭", layout="centered")
 
-st.title("🧭 Campus Room Finder (Free OSM + OSRM Directions)")
+st.title("MUT TECH CLUB ROOM FINDER")
 st.write("Search for a room and get real walking directions (powered by OpenStreetMap & OSRM).")
 
 # --- DATA ---
