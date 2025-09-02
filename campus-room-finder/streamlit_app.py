@@ -4,6 +4,7 @@ from pathlib import Path
 import folium
 from streamlit_folium import st_folium
 import requests
+from streamlit_js_eval import streamlit_js_eval  # 👈 NEW
 
 st.set_page_config(page_title="Campus Room Finder", page_icon="🧭", layout="centered")
 
@@ -17,14 +18,6 @@ DATA_PATH = Path("rooms.xlsx")
 def load_rooms(path: Path):
     df = pd.read_excel(path)
     return df
-
-if not DATA_PATH.exists():
-    st.info("Upload your rooms.xlsx file (columns: room_id, room_name, building, floor, lat, lon).")
-    up = st.file_uploader("Upload Excel", type=["xlsx"])
-    if up:
-        DATA_PATH.write_bytes(up.read())
-        st.rerun()
-    st.stop()
 
 rooms = load_rooms(DATA_PATH)
 
@@ -53,47 +46,22 @@ sel = st.selectbox(
 dest = filtered.loc[sel]
 dest_lat, dest_lon = float(dest["lat"]), float(dest["lon"])
 
-st.markdown(f"**Destination:** {dest['room_id']} — {dest['room_name']}<br>**Building:** {dest['building']} • **Floor:** {dest['floor']}", unsafe_allow_html=True)
+st.markdown(f"**Destination:** {dest['room_id']} — {dest['room_name']}\
+<br>**Building:** {dest['building']} • **Floor:** {dest['floor']}", unsafe_allow_html=True)
 
-# --- AUTO GET USER LOCATION ---
-st.subheader("📍 Your Location")
+# --- USER LOCATION (auto via browser) ---
+location = streamlit_js_eval(js_code="navigator.geolocation.getCurrentPosition(p => window.parent.postMessage({latitude: p.coords.latitude, longitude: p.coords.longitude}, '*'))", key="get_location")
 
-location = st.empty()
-js_code = """
-<script>
-navigator.geolocation.getCurrentPosition(
-    (pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        const coords = lat + "," + lon;
-        var streamlitDoc = window.parent.document;
-        var coordInput = streamlitDoc.querySelector('input[data-testid="stTextInput"]');
-        coordInput.value = coords;
-        coordInput.dispatchEvent(new Event("input", { bubbles: true }));
-    },
-    (err) => {
-        console.error(err);
-    }
-);
-</script>
-"""
-
-coords = st.text_input("Auto coordinates", key="coords")  # hidden text input for JS to fill
-st.components.v1.html(js_code, height=0, width=0)
-
-has_coords = coords != ""
-user_lat, user_lon = (0.0, 0.0)
-if has_coords and "," in coords:
-    try:
-        user_lat, user_lon = map(float, coords.split(","))
-        st.success(f"Detected location: {user_lat:.6f}, {user_lon:.6f}")
-    except:
-        has_coords = False
+user_lat, user_lon = None, None
+if location and isinstance(location, dict) and "latitude" in location:
+    user_lat = location["latitude"]
+    user_lon = location["longitude"]
 
 travel_mode = st.radio("Travel Mode", ["walking", "driving"], horizontal=True)
 
 # --- MAP ---
-m = folium.Map(location=[dest_lat, dest_lon], zoom_start=17)
+center_lat, center_lon = (user_lat or dest_lat), (user_lon or dest_lon)
+m = folium.Map(location=[center_lat, center_lon], zoom_start=17)
 
 # Destination marker
 folium.Marker(
@@ -103,7 +71,7 @@ folium.Marker(
     icon=folium.Icon(color="red", icon="flag")
 ).add_to(m)
 
-if has_coords:
+if user_lat and user_lon:
     # User marker
     folium.Marker(
         [user_lat, user_lon],
