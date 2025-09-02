@@ -13,7 +13,7 @@ def load_rooms():
 rooms = load_rooms()
 
 # App title
-st.title("🏫 Campus Room Finder")
+st.title(" Campus leture Room Finder")
 
 # Search and dropdown at top (not sidebar)
 search_query = st.text_input("🔍 Search by room name:")
@@ -83,3 +83,4 @@ if not filtered_rooms.empty:
         st.info("📍 Please allow location access in your browser to see the route.")
 else:
     st.warning("⚠️ No rooms found. Try another search.")
+
