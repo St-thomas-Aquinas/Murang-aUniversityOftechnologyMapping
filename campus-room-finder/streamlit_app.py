@@ -7,20 +7,23 @@ import requests
 
 st.set_page_config(page_title="Campus Room Finder", page_icon="🧭", layout="centered")
 
-st.title("MUT TECH CLUB ROOM FINDER")
+st.title("🧭 Campus Room Finder (Free OSM + OSRM Directions)")
 st.write("Search for a room and get real walking directions (powered by OpenStreetMap & OSRM).")
 
 # --- DATA ---
-DATA_PATH = Path(__file__).parent / "rooms.xlsx"   # always load from app directory
+DATA_PATH = Path("rooms.xlsx")
 
 @st.cache_data
 def load_rooms(path: Path):
     df = pd.read_excel(path)
-    # Expect columns: room_id, room_name, building, floor, lat, lon
     return df
 
 if not DATA_PATH.exists():
-    st.error("❌ rooms.xlsx not found in the app directory. Please add it and restart.")
+    st.info("Upload your rooms.xlsx file (columns: room_id, room_name, building, floor, lat, lon).")
+    up = st.file_uploader("Upload Excel", type=["xlsx"])
+    if up:
+        DATA_PATH.write_bytes(up.read())
+        st.rerun()
     st.stop()
 
 rooms = load_rooms(DATA_PATH)
@@ -50,17 +53,44 @@ sel = st.selectbox(
 dest = filtered.loc[sel]
 dest_lat, dest_lon = float(dest["lat"]), float(dest["lon"])
 
-st.markdown(f"**Destination:** {dest['room_id']} — {dest['room_name']}\
-<br>**Building:** {dest['building']} • **Floor:** {dest['floor']}", unsafe_allow_html=True)
+st.markdown(f"**Destination:** {dest['room_id']} — {dest['room_name']}<br>**Building:** {dest['building']} • **Floor:** {dest['floor']}", unsafe_allow_html=True)
 
-# --- USER LOCATION ---
+# --- AUTO GET USER LOCATION ---
 st.subheader("📍 Your Location")
-col1, col2 = st.columns(2)
-user_lat = col1.number_input("Your latitude", value=0.0, format="%.6f")
-user_lon = col2.number_input("Your longitude", value=0.0, format="%.6f")
-travel_mode = st.radio("Travel Mode", ["walking", "driving"], horizontal=True)
 
-has_coords = user_lat != 0.0 and user_lon != 0.0
+location = st.empty()
+js_code = """
+<script>
+navigator.geolocation.getCurrentPosition(
+    (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        const coords = lat + "," + lon;
+        var streamlitDoc = window.parent.document;
+        var coordInput = streamlitDoc.querySelector('input[data-testid="stTextInput"]');
+        coordInput.value = coords;
+        coordInput.dispatchEvent(new Event("input", { bubbles: true }));
+    },
+    (err) => {
+        console.error(err);
+    }
+);
+</script>
+"""
+
+coords = st.text_input("Auto coordinates", key="coords")  # hidden text input for JS to fill
+st.components.v1.html(js_code, height=0, width=0)
+
+has_coords = coords != ""
+user_lat, user_lon = (0.0, 0.0)
+if has_coords and "," in coords:
+    try:
+        user_lat, user_lon = map(float, coords.split(","))
+        st.success(f"Detected location: {user_lat:.6f}, {user_lon:.6f}")
+    except:
+        has_coords = False
+
+travel_mode = st.radio("Travel Mode", ["walking", "driving"], horizontal=True)
 
 # --- MAP ---
 m = folium.Map(location=[dest_lat, dest_lon], zoom_start=17)
@@ -90,7 +120,6 @@ if has_coords:
         data = res.json()
         if "routes" in data and len(data["routes"]) > 0:
             route = data["routes"][0]["geometry"]["coordinates"]
-            # Flip (lon, lat) to (lat, lon)
             route_latlon = [(lat, lon) for lon, lat in route]
             
             folium.PolyLine(
@@ -101,8 +130,8 @@ if has_coords:
                 tooltip=f"Route ({travel_mode})"
             ).add_to(m)
             
-            distance = data["routes"][0]["distance"] / 1000  # in km
-            duration = data["routes"][0]["duration"] / 60    # in minutes
+            distance = data["routes"][0]["distance"] / 1000
+            duration = data["routes"][0]["duration"] / 60
             st.success(f"Route found: **{distance:.2f} km**, about **{duration:.1f} minutes** by {travel_mode}.")
         else:
             st.warning("No route found. Try another mode or location.")
