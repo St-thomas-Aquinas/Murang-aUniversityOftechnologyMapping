@@ -5,6 +5,16 @@ from streamlit_folium import st_folium
 from streamlit_js_eval import get_geolocation
 import requests
 
+# Hide Streamlit default header, footer, and menu
+hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;} 
+    footer {visibility: hidden;}    
+    header {visibility: hidden;}    
+    </style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # Load rooms data
 @st.cache_data
 def load_rooms():
@@ -12,26 +22,29 @@ def load_rooms():
 
 rooms = load_rooms()
 
-# App title
-st.title(" Campus leture Room Finder")
+# Title
+st.title("🏫 Campus Room Finder")
 
-# Search and dropdown at top (not sidebar)
-search_query = st.text_input("🔍 Search by room name:")
+# Top search input
+search_query = st.text_input("🔍 Search for a room by name:")
+
+# Filter rooms by search
 filtered_rooms = rooms
 if search_query:
-    filtered_rooms = filtered_rooms[filtered_rooms["room_name"].str.contains(search_query, case=False, na=False)]
+    filtered_rooms = filtered_rooms[
+        filtered_rooms["room_name"].str.contains(search_query, case=False, na=False)
+    ]
 
-# Room dropdown
 if not filtered_rooms.empty:
     room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
     room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
 
     room_lat, room_lon = room_row["lat"], room_row["lon"]
 
-    # Room info card
+    # Show room info card
     st.markdown(
         f"""
-        <div style="padding:15px; background:#f9f9f9; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:15px;">
+        <div style="padding:15px; background:#f9f9f9; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
             <h3 style="margin:0;">📍 {room_row['room_name']}</h3>
             <p style="margin:0;">🏢 Building: <b>{room_row['building']}</b></p>
             <p style="margin:0;">🛗 Floor: <b>{room_row['floor']}</b></p>
@@ -45,18 +58,22 @@ if not filtered_rooms.empty:
     if user_loc is not None:
         user_lat, user_lon = user_loc["coords"]["latitude"], user_loc["coords"]["longitude"]
 
-        # Request walking route from OSRM API
+        # Call OSRM API for walking directions
         url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
         response = requests.get(url)
 
-        # Map
+        # Initialize map centered at user
         m = folium.Map(location=[user_lat, user_lon], zoom_start=17)
 
-        # Markers
-        folium.Marker([user_lat, user_lon], tooltip="📍 You are here", icon=folium.Icon(color="blue")).add_to(m)
-        folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
+        # Add markers
+        folium.Marker(
+            [user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")
+        ).add_to(m)
+        folium.Marker(
+            [room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")
+        ).add_to(m)
 
-        # Route drawing
+        # Draw route + show distance/time
         if response.status_code == 200:
             data = response.json()
             if data and "routes" in data and len(data["routes"]) > 0:
@@ -65,15 +82,13 @@ if not filtered_rooms.empty:
                 duration = round(data["routes"][0]["duration"] / 60, 1)
 
                 folium.GeoJson(
-                    route, 
-                    name="route", 
+                    route, name="route",
                     style_function=lambda x: {"color": "green", "weight": 4}
                 ).add_to(m)
 
-                # Show distance and time
                 st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
 
-        # Adjust map to fit both points
+        # Fit bounds to show both points
         m.fit_bounds([[user_lat, user_lon], [room_lat, room_lon]])
 
         # Show map
@@ -83,4 +98,3 @@ if not filtered_rooms.empty:
         st.info("📍 Please allow location access in your browser to see the route.")
 else:
     st.warning("⚠️ No rooms found. Try another search.")
-
