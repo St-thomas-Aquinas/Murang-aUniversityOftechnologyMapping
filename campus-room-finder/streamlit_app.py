@@ -14,7 +14,7 @@ def load_rooms():
 
 rooms = load_rooms()
 
-st.title("🏫 Campus Room Finder")
+st.title(" Campus Room Finder")
 
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
@@ -83,3 +83,4 @@ if not filtered_rooms.empty:
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
+
