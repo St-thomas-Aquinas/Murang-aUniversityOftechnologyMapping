@@ -4,11 +4,9 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_js_eval import streamlit_js_eval
 import requests
+from math import radians, sin, cos, sqrt, atan2
 
 st.set_page_config(layout="wide")
-
-# 🔑 Your OpenRouteService API key
-ORS_API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjJkMzg4NDMwZmFkODQ3NjM5NTg3NjU2NjI2YTQxYTZhIiwiaCI6Im11cm11cjY0In0="
 
 # Load rooms
 @st.cache_data
@@ -68,7 +66,7 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Map tiles
+    # Pick tile layer
     tile_layers = {
         "Standard": "OpenStreetMap",
         "Terrain": "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
@@ -77,53 +75,83 @@ if not filtered_rooms.empty:
         "Satellite": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
     }
 
-    m = folium.Map(
-        location=[user_lat, user_lon],
-        zoom_start=17,
-        tiles=tile_layers[map_style],
-        attr=""
-    )
+    # Build map
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17,
+                   tiles=tile_layers[map_style], attr="")
 
     # Markers
-    folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
-    folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
+    folium.Marker([user_lat, user_lon], tooltip="You are here",
+                  icon=folium.Icon(color="blue")).add_to(m)
+    folium.Marker([room_lat, room_lon], tooltip=room_choice,
+                  icon=folium.Icon(color="red")).add_to(m)
 
-    # 🚶 ORS Walking Route
-    try:
-        url = "https://api.openrouteservice.org/v2/directions/foot-walking"
-        headers = {"Authorization": ORS_API_KEY, "Content-Type": "application/json"}
-        body = {
-            "coordinates": [
-                [user_lon, user_lat],  # start
-                [room_lon, room_lat]   # end
-            ]
-        }
-        response = requests.post(url, json=body, headers=headers, timeout=10)
-        response.raise_for_status()
-        data = response.json()
+    # Distance function
+    def haversine(lat1, lon1, lat2, lon2):
+        R = 6371000  # meters
+        dlat = radians(lat2 - lat1)
+        dlon = radians(lon2 - lon1)
+        a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
+        c = 2 * atan2(sqrt(a), sqrt(1-a))
+        return R * c
 
-        if "features" in data and len(data["features"]) > 0:
-            route = data["features"][0]["geometry"]
-            distance = round(data["features"][0]["properties"]["segments"][0]["distance"]/1000, 2)
-            duration = round(data["features"][0]["properties"]["segments"][0]["duration"]/60, 1)
+    dist_m = haversine(user_lat, user_lon, room_lat, room_lon)
 
-            folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 4}).add_to(m)
-            st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
-        else:
-            st.warning("⚠️ No walking route found.")
+    # Try routing
+    if dist_m < 50:
+        # Very close → straight line
+        folium.PolyLine([[user_lat, user_lon], [room_lat, room_lon]],
+                        color="green", weight=4).add_to(m)
+        st.info(f"🚶 Distance: {round(dist_m,1)} m | ⏱ Time: < 1 min")
+    else:
+        try:
+            # Use OpenRouteService
+            ors_url = "https://api.openrouteservice.org/v2/directions/foot-walking"
+            headers = {"Authorization": "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjJkMzg4NDMwZmFkODQ3NjM5NTg3NjU2NjI2YTQxYTZhIiwiaCI6Im11cm11cjY0In0="}  # replace with your key
+            body = {"coordinates": [[user_lon, user_lat], [room_lon, room_lat]]}
+            response = requests.post(ors_url, json=body, headers=headers, timeout=10)
+            response.raise_for_status()
+            data = response.json()
 
-    except requests.exceptions.RequestException as e:
-        st.error(f"⚠️ Could not fetch walking route: {e}")
+            if "features" in data and data["features"]:
+                route = data["features"][0]["geometry"]
+                folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 4}).add_to(m)
 
+                distance = round(data["features"][0]["properties"]["segments"][0]["distance"] / 1000, 2)
+                duration = round(data["features"][0]["properties"]["segments"][0]["duration"] / 60, 1)
+                st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
+            else:
+                st.warning("⚠️ ORS could not find a walking route. Showing direct line.")
+                folium.PolyLine([[user_lat, user_lon], [room_lat, room_lon]],
+                                color="orange", weight=4, dash_array="5").add_to(m)
+        except Exception:
+            # Fallback to OSRM
+            try:
+                url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
+                response = requests.get(url, timeout=5)
+                response.raise_for_status()
+                data = response.json()
+                if data and "routes" in data and len(data["routes"]) > 0:
+                    route = data["routes"][0]["geometry"]
+                    folium.GeoJson(route, style_function=lambda x: {"color": "blue", "weight": 4}).add_to(m)
+                    distance = round(data["routes"][0]["distance"]/1000, 2)
+                    duration = round(data["routes"][0]["duration"]/60, 1)
+                    st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
+                else:
+                    st.warning("⚠️ No walking route found.")
+            except:
+                st.warning("⚠️ Could not fetch any route.")
+
+    # Show map
     st_folium(m, width=750, height=520)
 
-    # Footer credits
+    # Footer
     st.markdown(
         """
-        <div style="text-align:center; font-size:13px; color:#555; margin-top:5px;">
-            🗺️ Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | 
-            Routes by <a href="https://openrouteservice.org/" target="_blank">OpenRouteService</a> | 
-            Made by <b style="color:#e63946; background:yellow; padding:2px 6px; border-radius:5px;">MUT TECH CLUB</b>
+        <div style="text-align:center; font-size:13px; color:gray; margin-top:5px;">
+            🛠 Made by <b>MUT TECH CLUB</b> | 🗺 Map data from 
+            <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, 
+            <a href="https://openrouteservice.org/" target="_blank">OpenRouteService</a>, 
+            <a href="https://project-osrm.org/" target="_blank">OSRM</a>
         </div>
         """,
         unsafe_allow_html=True
