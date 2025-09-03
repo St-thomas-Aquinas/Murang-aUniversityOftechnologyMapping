@@ -16,6 +16,12 @@ rooms = load_rooms()
 
 st.title("MUT Campus Room Finder")
 
+# Map style selector (works on mobile too)
+map_style = st.selectbox(
+    "🗺️ Choose Map Style:",
+    ["Standard", "Terrain", "Light", "Dark", "Satellite"]
+)
+
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
 if search_query:
@@ -59,31 +65,22 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Build map with no default tiles
-    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None, control_scale=True)
+    # Pick tile layer based on user choice
+    tile_layers = {
+        "Standard": "OpenStreetMap",
+        "Terrain": "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+        "Light": "https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
+        "Dark": "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
+        "Satellite": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+    }
 
-    # Base layers
-    folium.TileLayer("OpenStreetMap", name="Standard").add_to(m)
-    folium.TileLayer(
-        tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
-        attr="Map tiles by Stamen Design, CC BY 3.0 — Map data © OpenStreetMap contributors",
-        name="Terrain"
-    ).add_to(m)
-    folium.TileLayer(
-        tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
-        attr="© OpenStreetMap contributors © CARTO",
-        name="Light"
-    ).add_to(m)
-    folium.TileLayer(
-        tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
-        attr="© OpenStreetMap contributors © CARTO",
-        name="Dark"
-    ).add_to(m)
-    folium.TileLayer(
-        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        attr="Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom",
-        name="Satellite"
-    ).add_to(m)
+    # Build map WITHOUT inline attribution
+    m = folium.Map(
+        location=[user_lat, user_lon],
+        zoom_start=17,
+        tiles=tile_layers[map_style],
+        attr=""  # hide default attribution
+    )
 
     # Markers
     folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
@@ -97,17 +94,29 @@ if not filtered_rooms.empty:
         data = response.json()
         if data and "routes" in data and len(data["routes"]) > 0:
             route = data["routes"][0]["geometry"]
-            folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 4}).add_to(m)
-            distance = round(data["routes"][0]["distance"] / 1000, 2)
-            duration = round(data["routes"][0]["duration"] / 60, 1)
+            folium.GeoJson(route, style_function=lambda x: {"color":"green","weight":4}).add_to(m)
+            distance = round(data["routes"][0]["distance"]/1000,2)
+            duration = round(data["routes"][0]["duration"]/60,1)
             st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
     except requests.exceptions.RequestException:
         st.warning("⚠️ Could not fetch route.")
 
-    # Add Layer Control (expanded by default)
-    folium.LayerControl(collapsed=False).add_to(m)
-
+    # Show map
     st_folium(m, width=750, height=520)
+
+    # Attribution footer (instead of on map)
+    st.markdown(
+        """
+        <div style="text-align:center; font-size:12px; color:gray; margin-top:5px;">
+            🗺️ Map data from 
+            <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, 
+            <a href="https://stamen.com/" target="_blank">Stamen</a>, 
+            <a href="https://carto.com/" target="_blank">CARTO</a>, 
+            <a href="https://www.esri.com/" target="_blank">Esri</a>.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
