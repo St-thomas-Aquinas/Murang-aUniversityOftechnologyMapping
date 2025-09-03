@@ -25,6 +25,7 @@ def load_rooms():
 rooms = load_rooms()
 st.title("🏫 Campus Room Finder")
 
+# Search input
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
 if search_query:
@@ -87,4 +88,14 @@ if not filtered_rooms.empty:
                     duration = round(data["routes"][0]["duration"]/60,1)
                     folium.GeoJson(route, style_function=lambda x: {"color":"green","weight":4}).add_to(m)
                     st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
-            except requests.exceptions.RequestException
+            except requests.exceptions.RequestException:
+                st.warning("⚠️ Could not fetch route this update.")
+
+            # Update map
+            map_container.folium_chart(m, width=750, height=520)
+        else:
+            st.warning("📍 Waiting for GPS...")
+
+        time.sleep(2)  # pause before next update
+else:
+    st.warning("⚠️ No rooms found. Try another search.")
