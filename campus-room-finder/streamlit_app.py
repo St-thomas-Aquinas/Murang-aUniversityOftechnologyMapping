@@ -1,35 +1,113 @@
-# Build map (default Terrain)
-m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None)
+import streamlit as st
+import pandas as pd
+import folium
+from streamlit_folium import st_folium
+from streamlit_js_eval import streamlit_js_eval
+import requests
 
-# Base layers without attribution (attr="")
-folium.TileLayer("OpenStreetMap", name="Standard", attr="").add_to(m)
-folium.TileLayer(
-    tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
-    attr="",  # removed from map
-    name="Terrain",
-    control=True
-).add_to(m)
-folium.TileLayer(
-    tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
-    attr="",  # removed
-    name="Light"
-).add_to(m)
-folium.TileLayer(
-    tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
-    attr="",  # removed
-    name="Dark"
-).add_to(m)
-folium.TileLayer(
-    tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    attr="",  # removed
-    name="Satellite"
-).add_to(m)
+st.set_page_config(layout="wide")
 
-# Add Layer Control (map type switcher)
-folium.LayerControl().add_to(m)
+# Load rooms
+@st.cache_data
+def load_rooms():
+    return pd.read_excel("rooms.xlsx")
 
-# Show map
-st_folium(m, width=750, height=520)
+rooms = load_rooms()
 
-# Show attribution separately under the map
-st.caption("🗺️ Map tiles © OpenStreetMap, Stamen, CARTO, Esri. Data © OpenStreetMap contributors")
+st.title("MUT Campus Room Finder")
+
+search_query = st.text_input("🔍 Search for a room by name:")
+filtered_rooms = rooms
+if search_query:
+    filtered_rooms = filtered_rooms[
+        filtered_rooms["room_name"].str.contains(search_query, case=False, na=False)
+    ]
+
+if not filtered_rooms.empty:
+    room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
+    room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
+    room_lat, room_lon = room_row["lat"], room_row["lon"]
+
+    st.markdown(f"""
+    <div style="padding:15px; background:#f9f9f9; border-radius:10px;">
+        <h3>📍 {room_row['room_name']}</h3>
+        <p>🏢 Building: <b>{room_row['building']}</b></p>
+        <p>🛗 Floor: <b>{room_row['floor']}</b></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Default campus center
+    default_lat, default_lon = -0.748, 37.150
+
+    # Get GPS
+    user_coords = streamlit_js_eval(
+        js_expressions="""
+        new Promise((resolve) => {
+            navigator.geolocation.getCurrentPosition(
+                pos => resolve({lat: pos.coords.latitude, lon: pos.coords.longitude}),
+                err => resolve(null)
+            );
+        })
+        """,
+        key="gps_live",
+        default=None
+    )
+
+    if user_coords:
+        user_lat, user_lon = user_coords["lat"], user_coords["lon"]
+    else:
+        user_lat, user_lon = default_lat, default_lon
+        st.info("📍 GPS not available. Showing campus center.")
+
+    # Build map with no default tiles
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None, control_scale=True)
+
+    # Base layers
+    folium.TileLayer("OpenStreetMap", name="Standard").add_to(m)
+    folium.TileLayer(
+        tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+        attr="Map tiles by Stamen Design, CC BY 3.0 — Map data © OpenStreetMap contributors",
+        name="Terrain"
+    ).add_to(m)
+    folium.TileLayer(
+        tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
+        attr="© OpenStreetMap contributors © CARTO",
+        name="Light"
+    ).add_to(m)
+    folium.TileLayer(
+        tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
+        attr="© OpenStreetMap contributors © CARTO",
+        name="Dark"
+    ).add_to(m)
+    folium.TileLayer(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom",
+        name="Satellite"
+    ).add_to(m)
+
+    # Markers
+    folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
+    folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
+
+    # Route
+    try:
+        url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        if data and "routes" in data and len(data["routes"]) > 0:
+            route = data["routes"][0]["geometry"]
+            folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 4}).add_to(m)
+            distance = round(data["routes"][0]["distance"] / 1000, 2)
+            duration = round(data["routes"][0]["duration"] / 60, 1)
+            st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
+    except requests.exceptions.RequestException:
+        st.warning("⚠️ Could not fetch route.")
+
+    # Add Layer Control (expanded by default)
+    folium.LayerControl(collapsed=False).add_to(m)
+
+    st_folium(m, width=750, height=520)
+
+else:
+    st.warning("⚠️ No rooms found. Try another search.")
