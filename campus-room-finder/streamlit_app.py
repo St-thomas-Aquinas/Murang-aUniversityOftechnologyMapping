@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
+from streamlit_js_eval import streamlit_js_eval
 import requests
+import time
 
 # Hide Streamlit default header, footer, and menu
 hide_streamlit_style = """
@@ -52,23 +54,63 @@ if not filtered_rooms.empty:
         unsafe_allow_html=True,
     )
 
-    # FIXED campus coordinates (replace with your exact campus center)
-    user_lat, user_lon = -0.748, 37.150  # Example: exact center of campus
+    # Default campus center (fallback if GPS fails)
+    default_lat, default_lon = -0.748, 37.150  # replace with your campus coordinates
 
-    # Initialize map centered at campus
+    # Get GPS asynchronously using a Promise
+    user_coords = streamlit_js_eval(
+        js_expressions="""
+        new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                pos => resolve({lat: pos.coords.latitude, lon: pos.coords.longitude}),
+                err => resolve(null)
+            );
+        })
+        """,
+        key="gps_async",
+        default=None
+    )
+
+    # Retry for a few seconds if user_coords is None (optional)
+    attempts = 0
+    while user_coords is None and attempts < 5:
+        time.sleep(1)
+        user_coords = streamlit_js_eval(
+            js_expressions="""
+            new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    pos => resolve({lat: pos.coords.latitude, lon: pos.coords.longitude}),
+                    err => resolve(null)
+                );
+            })
+            """,
+            key=f"gps_async_{attempts}",
+            default=None
+        )
+        attempts += 1
+
+    # Use GPS if available, else fallback
+    if user_coords:
+        user_lat, user_lon = user_coords["lat"], user_coords["lon"]
+        st.success(f"✅ GPS detected: {user_lat}, {user_lon}")
+    else:
+        user_lat, user_lon = default_lat, default_lon
+        st.info("📍 GPS not available. Showing campus center instead.")
+
+    # Call OSRM API for walking directions if GPS is real
+    url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
+    response = requests.get(url)
+
+    # Initialize map
     m = folium.Map(location=[user_lat, user_lon], zoom_start=17)
 
-    # Add user marker (blue) and room marker (red)
+    # Add markers
     folium.Marker(
         [user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")
     ).add_to(m)
     folium.Marker(
         [room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")
     ).add_to(m)
-
-    # Call OSRM API for walking directions
-    url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
-    response = requests.get(url)
 
     # Draw route + show distance/time
     if response.status_code == 200:
@@ -85,7 +127,7 @@ if not filtered_rooms.empty:
 
             st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
 
-    # Fit bounds to show both points
+    # Fit bounds
     m.fit_bounds([[user_lat, user_lon], [room_lat, room_lon]])
 
     # Show map
