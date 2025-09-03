@@ -14,9 +14,7 @@ def load_rooms():
 
 rooms = load_rooms()
 
-# Title
-st.title("MUT Campus Room Finder 🏫")
-st.subheader("Murang'a University of Technology")
+st.title("MUT Campus Room Finder")
 
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
@@ -61,8 +59,32 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Build map with Terrain style
-    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles="Stamen Terrain")
+    # Build map (default Terrain)
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None)
+
+    # Base layers
+    folium.TileLayer("OpenStreetMap", name="Standard").add_to(m)
+    folium.TileLayer(
+        tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+        attr="Map tiles by Stamen Design, CC BY 3.0 — Map data © OpenStreetMap contributors",
+        name="Terrain",
+        control=True
+    ).add_to(m)
+    folium.TileLayer(
+        tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
+        attr="© OpenStreetMap contributors © CARTO",
+        name="Light"
+    ).add_to(m)
+    folium.TileLayer(
+        tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
+        attr="© OpenStreetMap contributors © CARTO",
+        name="Dark"
+    ).add_to(m)
+    folium.TileLayer(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom",
+        name="Satellite"
+    ).add_to(m)
 
     # Markers
     folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
@@ -82,6 +104,9 @@ if not filtered_rooms.empty:
             st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
     except requests.exceptions.RequestException:
         st.warning("⚠️ Could not fetch route.")
+
+    # Add Layer Control (map type switcher)
+    folium.LayerControl().add_to(m)
 
     st_folium(m, width=750, height=520)
 
