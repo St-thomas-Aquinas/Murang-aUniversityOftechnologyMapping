@@ -104,7 +104,7 @@ if not filtered_rooms.empty:
     # Show map
     st_folium(m, width=750, height=520)
 
-    # Attribution footer (instead of on map)
+    # Attribution footer + Highlighted Credit
     st.markdown(
         """
         <div style="text-align:center; font-size:12px; color:gray; margin-top:5px;">
@@ -113,6 +113,10 @@ if not filtered_rooms.empty:
             <a href="https://stamen.com/" target="_blank">Stamen</a>, 
             <a href="https://carto.com/" target="_blank">CARTO</a>, 
             <a href="https://www.esri.com/" target="_blank">Esri</a>.
+            <br><br>
+            <span style="font-size:16px; font-weight:bold; color:#228B22;">
+                🚀 Made by <span style="color:#FFD700;">MUT TECH CLUB</span>
+            </span>
         </div>
         """,
         unsafe_allow_html=True
