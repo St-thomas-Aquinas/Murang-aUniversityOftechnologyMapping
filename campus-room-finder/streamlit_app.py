@@ -7,30 +7,6 @@ import requests
 
 st.set_page_config(layout="wide")
 
-# Floating University Title
-st.markdown(
-    """
-    <style>
-    .app-title {
-        position: fixed;
-        top: 5px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 28px;
-        font-weight: bold;
-        color: #2E86C1;
-        background: rgba(255,255,255,0.95);
-        padding: 8px 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        z-index: 9999;
-    }
-    </style>
-    <div class="app-title">Murang'a University of Technology</div>
-    """,
-    unsafe_allow_html=True
-)
-
 # Load rooms
 @st.cache_data
 def load_rooms():
@@ -38,7 +14,6 @@ def load_rooms():
 
 rooms = load_rooms()
 
-# Main section title
 st.title("🏫 Campus Room Finder")
 
 search_query = st.text_input("🔍 Search for a room by name:")
