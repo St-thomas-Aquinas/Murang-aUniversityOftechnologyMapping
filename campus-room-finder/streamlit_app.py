@@ -99,3 +99,4 @@ if not filtered_rooms.empty:
 else:
     st.warning("⚠️ No rooms found. Try another search.")
 
+
