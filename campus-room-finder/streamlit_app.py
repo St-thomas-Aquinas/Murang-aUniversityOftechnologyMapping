@@ -66,23 +66,23 @@ if not filtered_rooms.empty:
     folium.TileLayer("OpenStreetMap", name="Standard").add_to(m)
     folium.TileLayer(
         tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
-        attr="Map tiles by Stamen Design, CC BY 3.0 — Map data © OpenStreetMap contributors",
+        attr="",
         name="Terrain",
         control=True
     ).add_to(m)
     folium.TileLayer(
         tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
-        attr="© OpenStreetMap contributors © CARTO",
+        attr="",
         name="Light"
     ).add_to(m)
     folium.TileLayer(
         tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
-        attr="© OpenStreetMap contributors © CARTO",
+        attr="",
         name="Dark"
     ).add_to(m)
     folium.TileLayer(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        attr="Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom",
+        attr="",
         name="Satellite"
     ).add_to(m)
 
@@ -112,3 +112,4 @@ if not filtered_rooms.empty:
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
+
