@@ -18,7 +18,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # Load rooms data
 @st.cache_data
 def load_rooms():
-    return pd.read_excel("rooms.xlsx")
+    return pd.read_excel("campus-room-finder/rooms.xlsx")
 
 rooms = load_rooms()
 
@@ -98,5 +98,6 @@ if not filtered_rooms.empty:
         st.info("📍 Please allow location access in your browser to see the route.")
 else:
     st.warning("⚠️ No rooms found. Try another search.")
+
 
 
