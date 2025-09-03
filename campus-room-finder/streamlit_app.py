@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
-from streamlit_js_eval import get_geolocation
+from streamlit_js_eval import streamlit_js_eval
 import requests
 
 # Hide Streamlit default header, footer, and menu
@@ -53,11 +53,19 @@ if not filtered_rooms.empty:
         unsafe_allow_html=True,
     )
 
-    # Get user location
-    user_loc = get_geolocation()
-    if user_loc is not None:
-        user_lat, user_lon = user_loc["coords"]["latitude"], user_loc["coords"]["longitude"]
+    # ✅ Get accurate GPS location via browser
+    user_lat = streamlit_js_eval(
+        js_expressions="navigator.geolocation.getCurrentPosition(p=>p.coords.latitude)",
+        key="lat",
+        default=None,
+    )
+    user_lon = streamlit_js_eval(
+        js_expressions="navigator.geolocation.getCurrentPosition(p=>p.coords.longitude)",
+        key="lon",
+        default=None,
+    )
 
+    if user_lat and user_lon:
         # Call OSRM API for walking directions
         url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
         response = requests.get(url)
@@ -95,10 +103,6 @@ if not filtered_rooms.empty:
         st_folium(m, width=750, height=520)
 
     else:
-        st.info("📍 Please allow location access in your browser to see the route.")
+        st.info("📍 Please allow GPS location access in your browser.")
 else:
     st.warning("⚠️ No rooms found. Try another search.")
-
-
-
-
