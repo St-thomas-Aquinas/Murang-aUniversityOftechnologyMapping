@@ -98,3 +98,4 @@ if not filtered_rooms.empty:
         st.info("📍 Please allow location access in your browser to see the route.")
 else:
     st.warning("⚠️ No rooms found. Try another search.")
+
