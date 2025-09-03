@@ -14,7 +14,9 @@ def load_rooms():
 
 rooms = load_rooms()
 
-st.title(" MUT Campus Room Finder")
+# Title
+st.title("MUT Campus Room Finder 🏫")
+st.subheader("Murang'a University of Technology")
 
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
@@ -59,8 +61,10 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Build map
-    m = folium.Map(location=[user_lat, user_lon], zoom_start=17)
+    # Build map with Terrain style
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles="Stamen Terrain")
+
+    # Markers
     folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
     folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
@@ -83,7 +87,3 @@ if not filtered_rooms.empty:
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
-
-
-
-
