@@ -59,16 +59,15 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Build map (default Terrain)
-    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None)
+    # Build map with no default tiles
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None, control_scale=True)
 
     # Base layers
     folium.TileLayer("OpenStreetMap", name="Standard").add_to(m)
     folium.TileLayer(
         tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
         attr="Map tiles by Stamen Design, CC BY 3.0 — Map data © OpenStreetMap contributors",
-        name="Terrain",
-        control=True
+        name="Terrain"
     ).add_to(m)
     folium.TileLayer(
         tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
@@ -98,15 +97,15 @@ if not filtered_rooms.empty:
         data = response.json()
         if data and "routes" in data and len(data["routes"]) > 0:
             route = data["routes"][0]["geometry"]
-            folium.GeoJson(route, style_function=lambda x: {"color":"green","weight":4}).add_to(m)
-            distance = round(data["routes"][0]["distance"]/1000,2)
-            duration = round(data["routes"][0]["duration"]/60,1)
+            folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 4}).add_to(m)
+            distance = round(data["routes"][0]["distance"] / 1000, 2)
+            duration = round(data["routes"][0]["duration"] / 60, 1)
             st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
     except requests.exceptions.RequestException:
         st.warning("⚠️ Could not fetch route.")
 
-    # Add Layer Control (map type switcher)
-    folium.LayerControl().add_to(m)
+    # Add Layer Control (expanded by default)
+    folium.LayerControl(collapsed=False).add_to(m)
 
     st_folium(m, width=750, height=520)
 
