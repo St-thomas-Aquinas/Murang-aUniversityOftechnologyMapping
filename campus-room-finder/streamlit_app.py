@@ -50,16 +50,19 @@ if not filtered_rooms.empty:
     # Default campus center
     default_lat, default_lon = -0.748, 37.150
 
+    st.info("📍 Waiting for GPS updates... Blue marker and route will update in real time.")
+
     # Initialize map
     m = folium.Map(location=[default_lat, default_lon], zoom_start=17)
-    folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
+    room_marker = folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red"))
+    room_marker.add_to(m)
     map_container = st_folium(m, width=750, height=520)
 
-    st.info("📍 Waiting for GPS updates... Move to see blue marker update.")
-
-    # Live GPS updates
     user_marker = None
-    for i in range(60):  # 60-second loop
+    route_layer = None
+
+    # Live GPS loop (updates every 2 seconds)
+    for i in range(60):  # run for ~2 minutes
         user_coords = streamlit_js_eval(
             js_expressions="""
             new Promise((resolve) => {
@@ -82,34 +85,35 @@ if not filtered_rooms.empty:
                 m.remove_child(user_marker)
 
             # Add new user marker
-            user_marker = folium.Marker(
-                [user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")
-            )
+            user_marker = folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue"))
             user_marker.add_to(m)
 
-            # Draw walking route once
-            if i == 0:
-                try:
-                    url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
-                    response = requests.get(url, timeout=5)
-                    response.raise_for_status()
-                    data = response.json()
-                    if data and "routes" in data and len(data["routes"]) > 0:
-                        route = data["routes"][0]["geometry"]
-                        distance = round(data["routes"][0]["distance"]/1000,2)
-                        duration = round(data["routes"][0]["duration"]/60,1)
-                        folium.GeoJson(route, style_function=lambda x: {"color":"green","weight":4}).add_to(m)
-                        st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
-                except requests.exceptions.RequestException:
-                    st.warning("⚠️ Could not fetch route. Map shows markers only.")
+            # Remove previous route layer
+            if route_layer:
+                m.remove_child(route_layer)
+
+            # Draw walking route
+            try:
+                url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
+                response = requests.get(url, timeout=5)
+                response.raise_for_status()
+                data = response.json()
+                if data and "routes" in data and len(data["routes"]) > 0:
+                    route = data["routes"][0]["geometry"]
+                    distance = round(data["routes"][0]["distance"]/1000, 2)
+                    duration = round(data["routes"][0]["duration"]/60, 1)
+                    route_layer = folium.GeoJson(route, style_function=lambda x: {"color":"green","weight":4})
+                    route_layer.add_to(m)
+                    st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
+            except requests.exceptions.RequestException:
+                st.warning("⚠️ Could not fetch route this update.")
 
             # Update map
             map_container = st_folium(m, width=750, height=520)
-
         else:
             st.warning("📍 GPS not yet available...")
 
-        time.sleep(1)
+        time.sleep(2)
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
