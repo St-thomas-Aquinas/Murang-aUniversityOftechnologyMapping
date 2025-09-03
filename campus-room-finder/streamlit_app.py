@@ -60,7 +60,7 @@ if not filtered_rooms.empty:
         st.info("📍 GPS not available. Showing campus center.")
 
     # Build map
-    m = folium.Map(location=[user_lat, user_lon], zoom_start=17)
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17,tiles="Stamen Terrain")
     folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
     folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
@@ -83,5 +83,6 @@ if not filtered_rooms.empty:
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
+
 
 
