@@ -7,6 +7,9 @@ import requests
 
 st.set_page_config(layout="wide")
 
+# 🔑 Your OpenRouteService API key
+ORS_API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjJkMzg4NDMwZmFkODQ3NjM5NTg3NjU2NjI2YTQxYTZhIiwiaCI6Im11cm11cjY0In0="
+
 # Load rooms
 @st.cache_data
 def load_rooms():
@@ -16,7 +19,7 @@ rooms = load_rooms()
 
 st.title("MUT Campus Room Finder")
 
-# Map style selector (works on mobile too)
+# Map style selector
 map_style = st.selectbox(
     "🗺️ Choose Map Style:",
     ["Standard", "Terrain", "Light", "Dark", "Satellite"]
@@ -65,7 +68,7 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Pick tile layer based on user choice
+    # Map tiles
     tile_layers = {
         "Standard": "OpenStreetMap",
         "Terrain": "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
@@ -74,49 +77,53 @@ if not filtered_rooms.empty:
         "Satellite": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
     }
 
-    # Build map WITHOUT inline attribution
     m = folium.Map(
         location=[user_lat, user_lon],
         zoom_start=17,
         tiles=tile_layers[map_style],
-        attr=""  # hide default attribution
+        attr=""
     )
 
     # Markers
     folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
     folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
-    # Route
+    # 🚶 ORS Walking Route
     try:
-        url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
-        response = requests.get(url, timeout=5)
+        url = "https://api.openrouteservice.org/v2/directions/foot-walking"
+        headers = {"Authorization": ORS_API_KEY, "Content-Type": "application/json"}
+        body = {
+            "coordinates": [
+                [user_lon, user_lat],  # start
+                [room_lon, room_lat]   # end
+            ]
+        }
+        response = requests.post(url, json=body, headers=headers, timeout=10)
         response.raise_for_status()
         data = response.json()
-        if data and "routes" in data and len(data["routes"]) > 0:
-            route = data["routes"][0]["geometry"]
-            folium.GeoJson(route, style_function=lambda x: {"color":"green","weight":4}).add_to(m)
-            distance = round(data["routes"][0]["distance"]/1000,2)
-            duration = round(data["routes"][0]["duration"]/60,1)
-            st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
-    except requests.exceptions.RequestException:
-        st.warning("⚠️ Could not fetch route.")
 
-    # Show map
+        if "features" in data and len(data["features"]) > 0:
+            route = data["features"][0]["geometry"]
+            distance = round(data["features"][0]["properties"]["segments"][0]["distance"]/1000, 2)
+            duration = round(data["features"][0]["properties"]["segments"][0]["duration"]/60, 1)
+
+            folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 4}).add_to(m)
+            st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
+        else:
+            st.warning("⚠️ No walking route found.")
+
+    except requests.exceptions.RequestException as e:
+        st.error(f"⚠️ Could not fetch walking route: {e}")
+
     st_folium(m, width=750, height=520)
 
-    # Attribution footer + Highlighted Credit
+    # Footer credits
     st.markdown(
         """
-        <div style="text-align:center; font-size:12px; color:gray; margin-top:5px;">
-            🗺️ Map data from 
-            <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, 
-            <a href="https://stamen.com/" target="_blank">Stamen</a>, 
-            <a href="https://carto.com/" target="_blank">CARTO</a>, 
-            <a href="https://www.esri.com/" target="_blank">Esri</a>.
-            <br><br>
-            <span style="font-size:16px; font-weight:bold; color:#228B22;">
-                🚀 Made by <span style="color:#FFD700;">MUT TECH CLUB</span>
-            </span>
+        <div style="text-align:center; font-size:13px; color:#555; margin-top:5px;">
+            🗺️ Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | 
+            Routes by <a href="https://openrouteservice.org/" target="_blank">OpenRouteService</a> | 
+            Made by <b style="color:#e63946; background:yellow; padding:2px 6px; border-radius:5px;">MUT TECH CLUB</b>
         </div>
         """,
         unsafe_allow_html=True
