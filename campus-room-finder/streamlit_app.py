@@ -16,6 +16,7 @@ rooms = load_rooms()
 
 st.title("MUT Campus Room Finder")
 
+# Search input
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
 if search_query:
@@ -28,6 +29,7 @@ if not filtered_rooms.empty:
     room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
     room_lat, room_lon = room_row["lat"], room_row["lon"]
 
+    # Room info card
     st.markdown(f"""
     <div style="padding:15px; background:#f9f9f9; border-radius:10px;">
         <h3>📍 {room_row['room_name']}</h3>
@@ -59,34 +61,36 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Build map (default Terrain)
-    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None)
+    # Build map
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, attr="")
 
-    # Base layers
-    folium.TileLayer("OpenStreetMap", name="Standard").add_to(m)
+    # Add map layers without attribution
+    folium.TileLayer("OpenStreetMap", name="Standard", attr="").add_to(m)
     folium.TileLayer(
         tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
-        attr="",
         name="Terrain",
-        control=True
+        control=True,
+        attr=""
     ).add_to(m)
     folium.TileLayer(
         tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
-        attr="",
-        name="Light"
+        name="Light",
+        attr=""
     ).add_to(m)
     folium.TileLayer(
         tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
-        attr="",
-        name="Dark"
+        name="Dark",
+        attr=""
     ).add_to(m)
     folium.TileLayer(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        attr="",
-        name="Satellite"
+        name="Satellite",
+        attr=""
     ).add_to(m)
 
-    # Markers
+    folium.LayerControl().add_to(m)
+
+    # Add markers
     folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
     folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
@@ -105,11 +109,8 @@ if not filtered_rooms.empty:
     except requests.exceptions.RequestException:
         st.warning("⚠️ Could not fetch route.")
 
-    # Add Layer Control (map type switcher)
-    folium.LayerControl().add_to(m)
-
+    # Show map
     st_folium(m, width=750, height=520)
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
-
