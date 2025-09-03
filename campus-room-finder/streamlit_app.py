@@ -16,7 +16,6 @@ rooms = load_rooms()
 
 st.title("MUT Campus Room Finder")
 
-# Search input
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
 if search_query:
@@ -29,7 +28,6 @@ if not filtered_rooms.empty:
     room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
     room_lat, room_lon = room_row["lat"], room_row["lon"]
 
-    # Room info card
     st.markdown(f"""
     <div style="padding:15px; background:#f9f9f9; border-radius:10px;">
         <h3>📍 {room_row['room_name']}</h3>
@@ -61,36 +59,34 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Build map
-    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, attr="")
+    # Build map (default Terrain)
+    m = folium.Map(location=[user_lat, user_lon], zoom_start=17, tiles=None)
 
-    # Add map layers without attribution
-    folium.TileLayer("OpenStreetMap", name="Standard", attr="").add_to(m)
+    # Base layers
+    folium.TileLayer("OpenStreetMap", name="Standard").add_to(m)
     folium.TileLayer(
         tiles="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+        attr="Map tiles by Stamen Design, CC BY 3.0 — Map data © OpenStreetMap contributors",
         name="Terrain",
-        control=True,
-        attr=""
+        control=True
     ).add_to(m)
     folium.TileLayer(
         tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
-        name="Light",
-        attr=""
+        attr="© OpenStreetMap contributors © CARTO",
+        name="Light"
     ).add_to(m)
     folium.TileLayer(
         tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
-        name="Dark",
-        attr=""
+        attr="© OpenStreetMap contributors © CARTO",
+        name="Dark"
     ).add_to(m)
     folium.TileLayer(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        name="Satellite",
-        attr=""
+        attr="Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom",
+        name="Satellite"
     ).add_to(m)
 
-    folium.LayerControl().add_to(m)
-
-    # Add markers
+    # Markers
     folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
     folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
@@ -109,7 +105,9 @@ if not filtered_rooms.empty:
     except requests.exceptions.RequestException:
         st.warning("⚠️ Could not fetch route.")
 
-    # Show map
+    # Add Layer Control (map type switcher)
+    folium.LayerControl().add_to(m)
+
     st_folium(m, width=750, height=520)
 
 else:
