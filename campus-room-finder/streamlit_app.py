@@ -71,7 +71,7 @@ if not filtered_rooms.empty:
         default=None
     )
 
-    # Retry for a few seconds if user_coords is None (optional)
+    # Retry a few times if GPS not ready
     attempts = 0
     while user_coords is None and attempts < 5:
         time.sleep(1)
@@ -97,37 +97,33 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center instead.")
 
-    # Call OSRM API for walking directions if GPS is real
+    # Call OSRM API for walking directions safely
     url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
-    response = requests.get(url)
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+    except requests.exceptions.RequestException:
+        st.warning("⚠️ Could not fetch walking route. Map will show markers only.")
+        response = None
 
     # Initialize map
     m = folium.Map(location=[user_lat, user_lon], zoom_start=17)
 
     # Add markers
-    folium.Marker(
-        [user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")
-    ).add_to(m)
-    folium.Marker(
-        [room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")
-    ).add_to(m)
+    folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
+    folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
 
-    # Draw route + show distance/time
-    if response.status_code == 200:
+    # Draw route if available
+    if response:
         data = response.json()
         if data and "routes" in data and len(data["routes"]) > 0:
             route = data["routes"][0]["geometry"]
             distance = round(data["routes"][0]["distance"] / 1000, 2)
             duration = round(data["routes"][0]["duration"] / 60, 1)
-
-            folium.GeoJson(
-                route, name="route",
-                style_function=lambda x: {"color": "green", "weight": 4}
-            ).add_to(m)
-
+            folium.GeoJson(route, style_function=lambda x: {"color": "green", "weight": 4}).add_to(m)
             st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
 
-    # Fit bounds
+    # Fit bounds to show both points
     m.fit_bounds([[user_lat, user_lon], [room_lat, room_lon]])
 
     # Show map
