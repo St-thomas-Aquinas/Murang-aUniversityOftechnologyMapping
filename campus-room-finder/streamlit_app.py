@@ -10,7 +10,7 @@ st.set_page_config(layout="wide")
 # Load rooms
 @st.cache_data
 def load_rooms():
-    return pd.read_excel("rooms.xlsx")
+    return pd.read_excel("campus-room-finder/rooms.xlsx")
 
 rooms = load_rooms()
 
@@ -124,3 +124,4 @@ if not filtered_rooms.empty:
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
+
