@@ -65,7 +65,7 @@ if not filtered_rooms.empty:
         user_lat, user_lon = default_lat, default_lon
         st.info("📍 GPS not available. Showing campus center.")
 
-    # Pick tile layer based on user choice
+    # Tile layers & attributions
     tile_layers = {
         "Standard": "OpenStreetMap",
         "Terrain": "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
@@ -74,12 +74,20 @@ if not filtered_rooms.empty:
         "Satellite": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
     }
 
-    # Build map WITHOUT inline attribution
+    attributions = {
+        "Standard": "© OpenStreetMap contributors",
+        "Terrain": "Map tiles by Stamen Design, © OpenStreetMap",
+        "Light": "© OpenStreetMap contributors © CARTO",
+        "Dark": "© OpenStreetMap contributors © CARTO",
+        "Satellite": "Tiles © Esri — Source: Esri, DigitalGlobe and others"
+    }
+
+    # Build map (with required attribution)
     m = folium.Map(
         location=[user_lat, user_lon],
         zoom_start=17,
         tiles=tile_layers[map_style],
-        attr=""  # hide default attribution
+        attr=attributions[map_style]   # ✅ required to avoid ValueError
     )
 
     # Markers
@@ -106,14 +114,10 @@ if not filtered_rooms.empty:
 
     # Attribution footer + Highlighted Credit
     st.markdown(
-        """
+        f"""
         <div style="text-align:center; font-size:12px; color:gray; margin-top:5px;">
-            🗺️ Map data from 
-            <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, 
-            <a href="https://stamen.com/" target="_blank">Stamen</a>, 
-            <a href="https://carto.com/" target="_blank">CARTO</a>, 
-            <a href="https://www.esri.com/" target="_blank">Esri</a>.
-            <br><br>
+            🗺️ Map style: <b>{map_style}</b> <br>
+            {attributions[map_style]} <br><br>
             <span style="font-size:16px; font-weight:bold; color:#228B22;">
                 🚀 Made by <span style="color:#FFD700;">MUT TECH CLUB</span>
             </span>
@@ -124,4 +128,3 @@ if not filtered_rooms.empty:
 
 else:
     st.warning("⚠️ No rooms found. Try another search.")
-
