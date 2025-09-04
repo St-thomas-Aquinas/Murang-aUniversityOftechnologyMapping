@@ -4,6 +4,7 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_js_eval import streamlit_js_eval
 import requests
+from rapidfuzz import process  # ✅ fuzzy search
 
 st.set_page_config(layout="wide")
 
@@ -22,12 +23,27 @@ map_style = st.selectbox(
     ["Standard", "Terrain", "Light", "Dark", "Satellite"]
 )
 
+# --- Search ---
 search_query = st.text_input("🔍 Search for a room by name:")
 filtered_rooms = rooms
+
 if search_query:
-    filtered_rooms = filtered_rooms[
-        filtered_rooms["room_name"].str.contains(search_query, case=False, na=False)
+    # 1️⃣ Case-insensitive substring match
+    substring_matches = rooms[
+        rooms["room_name"].str.contains(search_query, case=False, na=False)
     ]
+
+    # 2️⃣ Fuzzy match (top 5 similar names)
+    room_names = rooms["room_name"].tolist()
+    fuzzy_matches = process.extract(
+        search_query, room_names, limit=5, score_cutoff=60
+    )
+    fuzzy_names = [m[0] for m in fuzzy_matches]
+
+    fuzzy_df = rooms[rooms["room_name"].isin(fuzzy_names)]
+
+    # Combine both (remove duplicates)
+    filtered_rooms = pd.concat([substring_matches, fuzzy_df]).drop_duplicates()
 
 if not filtered_rooms.empty:
     room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
@@ -87,7 +103,7 @@ if not filtered_rooms.empty:
         location=[user_lat, user_lon],
         zoom_start=17,
         tiles=tile_layers[map_style],
-        attr=attributions[map_style]   # ✅ required to avoid ValueError
+        attr=attributions[map_style]
     )
 
     # Markers
