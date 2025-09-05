@@ -46,7 +46,10 @@ if search_query:
     filtered_rooms = pd.concat([substring_matches, fuzzy_df]).drop_duplicates()
 
 if not filtered_rooms.empty:
-    room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
+    # ✅ Sort rooms alphabetically (case-insensitive)
+    sorted_rooms = sorted(filtered_rooms["room_name"].unique(), key=lambda x: str(x).lower())
+
+    room_choice = st.selectbox("Select a room:", sorted_rooms)
     room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
     room_lat, room_lon = room_row["lat"], room_row["lon"]
 
