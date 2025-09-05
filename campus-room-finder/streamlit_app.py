@@ -2,113 +2,181 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
-from rapidfuzz import process  # fuzzy search
+from streamlit_js_eval import streamlit_js_eval
+import requests
+from rapidfuzz import process  # ✅ fuzzy search
 
-# -------------------------
-# Mock dataset (replace with your real campus data)
-# -------------------------
-data = {
-    "room_name": ["Library", "Lab 1", "Lab 2", "Administration", "Hall A", "Hall B"],
-    "lat": [-0.785, -0.786, -0.787, -0.784, -0.783, -0.782],
-    "lon": [36.955, 36.956, 36.957, 36.958, 36.959, 36.960],
-}
-rooms_df = pd.DataFrame(data)
+st.set_page_config(layout="wide")
 
-# -------------------------
-# Initialize session state
-# -------------------------
+# --- Session State Initialization ---
 if "search_query" not in st.session_state:
     st.session_state.search_query = ""
 if "selected_room" not in st.session_state:
     st.session_state.selected_room = None
 
-st.title("🏫 Campus Room Finder (MUT)")
+# Load rooms
+@st.cache_data
+def load_rooms():
+    return pd.read_excel("campus-room-finder/rooms.xlsx")
 
-# -------------------------
-# Search Input + Button
-# -------------------------
-col1, col2 = st.columns([4, 1])
-with col1:
-    search_box = st.text_input(
-        "Search for a room:",
-        value=st.session_state.search_query,
-        key="room_input"
-    )
-with col2:
-    if st.button("🔍 Search"):
-        st.session_state.search_query = search_box
-        st.experimental_rerun()
+rooms = load_rooms()
 
-# -------------------------
-# Autocomplete (fuzzy search)
-# -------------------------
-if search_box.strip():
-    matches = process.extract(
-        search_box,
-        rooms_df["room_name"].astype(str),
-        limit=5,
-        score_cutoff=40
-    )
+st.title("MUT Campus Room Finder")
+
+# Map style selector
+map_style = st.selectbox(
+    "🗺️ Choose Map Style:",
+    ["Standard", "Terrain", "Light", "Dark", "Satellite"]
+)
+
+# --- Search with Autocomplete ---
+search_box = st.text_input("🔍 Search for a room:", st.session_state.search_query)
+
+# Suggest top 5 matches using fuzzy search
+suggestions = []
+if search_box:
+    room_names = rooms["room_name"].tolist()
+    matches = process.extract(search_box, room_names, limit=5, score_cutoff=50)
     suggestions = [m[0] for m in matches]
-else:
-    suggestions = []
 
+# Display clickable suggestions under the search bar
 if suggestions:
-    st.write("Suggestions:")
-    for s in suggestions:
-        if st.button(s):
+    st.markdown("**Did you mean:**")
+    cols = st.columns(len(suggestions))
+    for i, s in enumerate(suggestions):
+        if cols[i].button(s):
             st.session_state.search_query = s
             st.session_state.selected_room = s
-            st.experimental_rerun()
+            st.rerun()
 
-# -------------------------
-# Dropdown (sorted list)
-# -------------------------
-choices = sorted(rooms_df["room_name"].tolist())
-default_index = 0
-if st.session_state.selected_room and st.session_state.selected_room in choices:
-    default_index = choices.index(st.session_state.selected_room)
+# Search button
+if st.button("🔍 Search"):
+    st.session_state.search_query = search_box
+    st.rerun()
 
+# Autocomplete dropdown (optional)
 selected_from_dropdown = st.selectbox(
-    "Or pick from the list:",
-    choices,
-    index=default_index,
-    key="room_dropdown"
+    "Or pick from suggestions:",
+    options=[""] + suggestions,
+    index=0
 )
 
-if selected_from_dropdown != st.session_state.selected_room:
+if selected_from_dropdown and selected_from_dropdown != st.session_state.selected_room:
     st.session_state.selected_room = selected_from_dropdown
-    if "search_query" in st.session_state:
-        del st.session_state["search_query"]
     st.session_state.search_query = selected_from_dropdown
-    st.experimental_rerun()
+    st.rerun()
 
-# -------------------------
-# Display Map
-# -------------------------
-if st.session_state.selected_room:
-    room_data = rooms_df[rooms_df["room_name"] == st.session_state.selected_room].iloc[0]
-    st.success(f"Showing location for: {st.session_state.selected_room}")
-
-    m = folium.Map(
-        location=[room_data["lat"], room_data["lon"]],
-        zoom_start=18,
-        tiles="OpenStreetMap",
-        attr="Map data © OpenStreetMap contributors"
+# --- Filtered Search Results ---
+filtered_rooms = rooms
+if st.session_state.search_query:
+    substring_matches = rooms[
+        rooms["room_name"].str.contains(st.session_state.search_query, case=False, na=False)
+    ]
+    room_names = rooms["room_name"].tolist()
+    fuzzy_matches = process.extract(
+        st.session_state.search_query, room_names, limit=5, score_cutoff=60
     )
-    folium.Marker(
-        [room_data["lat"], room_data["lon"]],
-        popup=room_data["room_name"],
-        tooltip="You are here"
-    ).add_to(m)
+    fuzzy_names = [m[0] for m in fuzzy_matches]
+    fuzzy_df = rooms[rooms["room_name"].isin(fuzzy_names)]
+    filtered_rooms = pd.concat([substring_matches, fuzzy_df]).drop_duplicates()
 
-    st_folium(m, width=700, height=500)
+# --- Display Map and Info ---
+if not filtered_rooms.empty:
+    room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
+    room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
+    room_lat, room_lon = room_row["lat"], room_row["lon"]
 
-# -------------------------
-# Footer
-# -------------------------
-st.markdown("---")
-st.markdown(
-    "<p style='text-align:center; font-weight:bold; color:#E74C3C;'>✨ Made by MUT TECH CLUB ✨</p>",
-    unsafe_allow_html=True
-)
+    st.markdown(f"""
+    <div style="padding:15px; background:#f9f9f9; border-radius:10px;">
+        <h3>📍 {room_row['room_name']}</h3>
+        <p>🏢 Building: <b>{room_row['building']}</b></p>
+        <p>🛗 Floor: <b>{room_row['floor']}</b></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Default campus center
+    default_lat, default_lon = -0.748, 37.150
+
+    # Get GPS
+    user_coords = streamlit_js_eval(
+        js_expressions="""
+        new Promise((resolve) => {
+            navigator.geolocation.getCurrentPosition(
+                pos => resolve({lat: pos.coords.latitude, lon: pos.coords.longitude}),
+                err => resolve(null)
+            );
+        })
+        """,
+        key="gps_live",
+        default=None
+    )
+
+    if user_coords:
+        user_lat, user_lon = user_coords["lat"], user_coords["lon"]
+    else:
+        user_lat, user_lon = default_lat, default_lon
+        st.info("📍 GPS not available. Showing campus center.")
+
+    # Tile layers & attributions
+    tile_layers = {
+        "Standard": "OpenStreetMap",
+        "Terrain": "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+        "Light": "https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png",
+        "Dark": "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png",
+        "Satellite": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+    }
+
+    attributions = {
+        "Standard": "© OpenStreetMap contributors",
+        "Terrain": "Map tiles by Stamen Design, © OpenStreetMap",
+        "Light": "© OpenStreetMap contributors © CARTO",
+        "Dark": "© OpenStreetMap contributors © CARTO",
+        "Satellite": "Tiles © Esri — Source: Esri, DigitalGlobe and others"
+    }
+
+    # Build map
+    m = folium.Map(
+        location=[user_lat, user_lon],
+        zoom_start=17,
+        tiles=tile_layers[map_style],
+        attr=attributions[map_style]
+    )
+
+    # Markers
+    folium.Marker([user_lat, user_lon], tooltip="You are here", icon=folium.Icon(color="blue")).add_to(m)
+    folium.Marker([room_lat, room_lon], tooltip=room_choice, icon=folium.Icon(color="red")).add_to(m)
+
+    # Route
+    try:
+        url = f"http://router.project-osrm.org/route/v1/foot/{user_lon},{user_lat};{room_lon},{room_lat}?overview=full&geometries=geojson"
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        if data and "routes" in data and len(data["routes"]) > 0:
+            route = data["routes"][0]["geometry"]
+            folium.GeoJson(route, style_function=lambda x: {"color":"green","weight":4}).add_to(m)
+            distance = round(data["routes"][0]["distance"]/1000,2)
+            duration = round(data["routes"][0]["duration"]/60,1)
+            st.success(f"🚶 Distance: **{distance} km** | ⏱ Time: **{duration} mins**")
+    except requests.exceptions.RequestException:
+        st.warning("⚠️ Could not fetch route.")
+
+    # Show map
+    st_folium(m, width=750, height=520)
+
+    # Attribution footer
+    st.markdown(
+        f"""
+        <div style="text-align:center; font-size:12px; color:gray; margin-top:5px;">
+            🗺️ Map style: <b>{map_style}</b> <br>
+            {attributions[map_style]} <br><br>
+            <span style="font-size:16px; font-weight:bold; color:#228B22;">
+                🚀 Made by <span style="color:#FFD700;">MUT TECH CLUB</span>
+            </span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+else:
+    st.warning("⚠️ No rooms found. Try another search.")
