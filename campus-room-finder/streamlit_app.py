@@ -11,9 +11,7 @@ st.set_page_config(layout="wide")
 # Load rooms
 @st.cache_data
 def load_rooms():
-    df = pd.read_excel("campus-room-finder/rooms.xlsx")
-    # ✅ Sort all rooms alphabetically by name on load
-    return df.sort_values(by="room_name", key=lambda col: col.str.lower())
+    return pd.read_excel("campus-room-finder/rooms.xlsx")
 
 rooms = load_rooms()
 
@@ -25,36 +23,38 @@ map_style = st.selectbox(
     ["Standard", "Terrain", "Light", "Dark", "Satellite"]
 )
 
-# --- Search ---
+# --- Autocomplete + Search ---
 search_query = st.text_input("🔍 Search for a room by name:")
+room_names = rooms["room_name"].tolist()
+room_choice = None
 filtered_rooms = rooms
 
 if search_query:
-    # 1️⃣ Case-insensitive substring match
+    # 1️⃣ Substring matches
     substring_matches = rooms[
         rooms["room_name"].str.contains(search_query, case=False, na=False)
     ]
 
-    # 2️⃣ Fuzzy match (top 5 similar names)
-    room_names = rooms["room_name"].tolist()
-    fuzzy_matches = process.extract(
-        search_query, room_names, limit=5, score_cutoff=60
-    )
+    # 2️⃣ Fuzzy matches
+    fuzzy_matches = process.extract(search_query, room_names, limit=5, score_cutoff=60)
     fuzzy_names = [m[0] for m in fuzzy_matches]
-
     fuzzy_df = rooms[rooms["room_name"].isin(fuzzy_names)]
 
-    # Combine both (remove duplicates) and sort alphabetically
-    filtered_rooms = (
-        pd.concat([substring_matches, fuzzy_df])
-        .drop_duplicates()
-        .sort_values(by="room_name", key=lambda col: col.str.lower())
-    )
+    # Combine results
+    filtered_rooms = pd.concat([substring_matches, fuzzy_df]).drop_duplicates()
 
-if not filtered_rooms.empty:
-    # ✅ Already sorted from above
+    # 🔥 Autocomplete suggestions
+    st.write("Suggestions:")
+    for name in fuzzy_names:
+        if st.button(f"➡ {name}"):
+            room_choice = name
+
+# --- Fallback dropdown ---
+if not room_choice and not filtered_rooms.empty:
     room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
-    room_row = filtered_rooms[filtered_rooms["room_name"] == room_choice].iloc[0]
+
+if room_choice:
+    room_row = rooms[rooms["room_name"] == room_choice].iloc[0]
     room_lat, room_lon = room_row["lat"], room_row["lon"]
 
     st.markdown(f"""
@@ -105,7 +105,7 @@ if not filtered_rooms.empty:
         "Satellite": "Tiles © Esri — Source: Esri, DigitalGlobe and others"
     }
 
-    # Build map (with required attribution)
+    # Build map
     m = folium.Map(
         location=[user_lat, user_lon],
         zoom_start=17,
