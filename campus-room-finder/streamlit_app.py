@@ -49,9 +49,12 @@ if search_query:
         if st.button(f"➡ {name}"):
             room_choice = name
 
-# --- Fallback dropdown ---
+# --- Fallback dropdown (alphabetical order) ---
 if not room_choice and not filtered_rooms.empty:
-    room_choice = st.selectbox("Select a room:", filtered_rooms["room_name"].unique())
+    room_choice = st.selectbox(
+        "Select a room:",
+        sorted(filtered_rooms["room_name"].unique())  # ✅ Sorted alphabetically
+    )
 
 if room_choice:
     room_row = rooms[rooms["room_name"] == room_choice].iloc[0]
