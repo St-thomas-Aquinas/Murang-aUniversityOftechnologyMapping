@@ -7,12 +7,12 @@
     "lat": -0.716201102072584,
     "lon": 37.1475795004628,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -23,11 +23,11 @@
     "lat": -0.716428605927705,
     "lon": 37.1494282910078,
     "images": [
-      "3D_lab.heic",
-      "3D_lab_2.heic",
-      "3D_lab_back.heic",
-      "3D_lab_front.heic",
-      "3D_lab_front_2.heic"
+      "/assets/imgs/3D_lab.heic",
+      "/assets/imgs/3D_lab_2.heic",
+      "/assets/imgs/3D_lab_back.heic",
+      "/assets/imgs/3D_lab_front.heic",
+      "/assets/imgs/3D_lab_front_2.heic"
     ]
   },
   {
@@ -38,8 +38,8 @@
     "lat": -0.715441693829537,
     "lon": 37.147768698456,
     "images": [
-      "School_of_education_humanities_and_social_sciences.heic",
-      "School_of_education_humanities_and_social_sciences2.heic"
+      "/assets/imgs/School_of_education_humanities_and_social_sciences.heic",
+      "/assets/imgs/School_of_education_humanities_and_social_sciences2.heic"
     ]
   },
   {
@@ -50,8 +50,8 @@
     "lat": -0.715441693829537,
     "lon": 37.147768698456,
     "images": [
-      "School_of_education_humanities_and_social_sciences.heic",
-      "School_of_education_humanities_and_social_sciences2.heic"
+      "/assets/imgs/School_of_education_humanities_and_social_sciences.heic",
+      "/assets/imgs/School_of_education_humanities_and_social_sciences2.heic"
     ]
   },
   {
@@ -62,9 +62,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -75,12 +75,12 @@
     "lat": -0.715897766403863,
     "lon": 37.1470923211146,
     "images": [
-      "Assembly_hall.heic",
-      "Assembly_hall_2.heic",
-      "Milimani_hall_1_side_view.heic",
-      "Milimani_hall_2.heic",
-      "Milimani_hall_2_1.heic",
-      "Milimani_hall_2_front.heic"
+      "/assets/imgs/Assembly_hall.heic",
+      "/assets/imgs/Assembly_hall_2.heic",
+      "/assets/imgs/Milimani_hall_1_side_view.heic",
+      "/assets/imgs/Milimani_hall_2.heic",
+      "/assets/imgs/Milimani_hall_2_1.heic",
+      "/assets/imgs/Milimani_hall_2_front.heic"
     ]
   },
   {
@@ -91,9 +91,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -104,9 +104,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -117,9 +117,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -130,9 +130,9 @@
     "lat": -0.716324300633127,
     "lon": 37.1497677838636,
     "images": [
-      "Building_department_1.heic",
-      "Building_department_2.heic",
-      "Building_department.heic"
+      "/assets/imgs/Building_department_1.heic",
+      "/assets/imgs/Building_department_2.heic",
+      "/assets/imgs/Building_department.heic"
     ]
   },
   {
@@ -143,20 +143,20 @@
     "lat": -0.716431450619158,
     "lon": 37.1483623972125,
     "images": [
-      "Directory_block_office_side.heic",
-      "Directory_office_side.heic",
-      "Directory_office_side_2.heic",
-      "Examination_office.heic",
-      "Examination_office_1.heic",
-      "Examinations_office_2.heic",
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic",
-      "Security_office.heic",
-      "Tuition_offices.heic"
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Directory_office_side.heic",
+      "/assets/imgs/Directory_office_side_2.heic",
+      "/assets/imgs/Examination_office.heic",
+      "/assets/imgs/Examination_office_1.heic",
+      "/assets/imgs/Examinations_office_2.heic",
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic",
+      "/assets/imgs/Security_office.heic",
+      "/assets/imgs/Tuition_offices.heic"
     ]
   },
   {
@@ -167,9 +167,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -180,9 +180,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -193,12 +193,12 @@
     "lat": -0.715897766403863,
     "lon": 37.1470923211146,
     "images": [
-      "Assembly_hall.heic",
-      "Assembly_hall_2.heic",
-      "Milimani_hall_1_side_view.heic",
-      "Milimani_hall_2.heic",
-      "Milimani_hall_2_1.heic",
-      "Milimani_hall_2_front.heic"
+      "/assets/imgs/Assembly_hall.heic",
+      "/assets/imgs/Assembly_hall_2.heic",
+      "/assets/imgs/Milimani_hall_1_side_view.heic",
+      "/assets/imgs/Milimani_hall_2.heic",
+      "/assets/imgs/Milimani_hall_2_1.heic",
+      "/assets/imgs/Milimani_hall_2_front.heic"
     ]
   },
   {
@@ -209,9 +209,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -222,7 +222,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -233,7 +233,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -244,9 +244,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -257,9 +257,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -270,9 +270,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -283,8 +283,8 @@
     "lat": -0.715441693829537,
     "lon": 37.147768698456,
     "images": [
-      "School_of_education_humanities_and_social_sciences.heic",
-      "School_of_education_humanities_and_social_sciences2.heic"
+      "/assets/imgs/School_of_education_humanities_and_social_sciences.heic",
+      "/assets/imgs/School_of_education_humanities_and_social_sciences2.heic"
     ]
   },
   {
@@ -295,12 +295,12 @@
     "lat": -0.716201102072584,
     "lon": 37.1475795004628,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -311,9 +311,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -332,19 +332,19 @@
     "lat": -0.715776737008317,
     "lon": 37.1468051471196,
     "images": [
-      "Electricity_and_electronic_laboratory.heic",
-      "Electricity_and_electronic_laboratory_1.heic",
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic",
-      "Sl_lab_building.heic",
-      "Twin_lab_back.heic",
-      "Twin_lab_back_1.heic",
-      "Twin_lab_front_1.heic",
-      "Twin_lab_front_2.heic",
-      "Twin_lab_front_view.heic",
-      "Twin_lab_left_side_view.heic",
-      "Twin_lab_side_view.heic"
+      "/assets/imgs/Electricity_and_electronic_laboratory.heic",
+      "/assets/imgs/Electricity_and_electronic_laboratory_1.heic",
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Sl_lab_building.heic",
+      "/assets/imgs/Twin_lab_back.heic",
+      "/assets/imgs/Twin_lab_back_1.heic",
+      "/assets/imgs/Twin_lab_front_1.heic",
+      "/assets/imgs/Twin_lab_front_2.heic",
+      "/assets/imgs/Twin_lab_front_view.heic",
+      "/assets/imgs/Twin_lab_left_side_view.heic",
+      "/assets/imgs/Twin_lab_side_view.heic"
     ]
   },
   {
@@ -355,12 +355,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -371,8 +371,8 @@
     "lat": -0.715441693829537,
     "lon": 37.147768698456,
     "images": [
-      "School_of_education_humanities_and_social_sciences.heic",
-      "School_of_education_humanities_and_social_sciences2.heic"
+      "/assets/imgs/School_of_education_humanities_and_social_sciences.heic",
+      "/assets/imgs/School_of_education_humanities_and_social_sciences2.heic"
     ]
   },
   {
@@ -383,9 +383,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -396,12 +396,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -412,12 +412,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -428,9 +428,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -441,9 +441,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -454,9 +454,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -503,8 +503,8 @@
     "lat": -0.7161379541269,
     "lon": 37.1471904336197,
     "images": [
-      "Dining_hall_front.heic",
-      "Dining_hall_side.heic"
+      "/assets/imgs/Dining_hall_front.heic",
+      "/assets/imgs/Dining_hall_side.heic"
     ]
   },
   {
@@ -515,7 +515,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -526,10 +526,10 @@
     "lat": -0.715721854257479,
     "lon": 37.1472513310437,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Directory_office_side.heic",
-      "Directory_office_side_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Directory_office_side.heic",
+      "/assets/imgs/Directory_office_side_2.heic"
     ]
   },
   {
@@ -540,9 +540,9 @@
     "lat": -0.716308180723417,
     "lon": 37.1489285347568,
     "images": [
-      "Electricity_and_electronic_laboratory.heic",
-      "Electricity_and_electronic_laboratory_1.heic",
-      "Electricity_and_electronics_workshop.heic"
+      "/assets/imgs/Electricity_and_electronic_laboratory.heic",
+      "/assets/imgs/Electricity_and_electronic_laboratory_1.heic",
+      "/assets/imgs/Electricity_and_electronics_workshop.heic"
     ]
   },
   {
@@ -553,21 +553,21 @@
     "lat": -0.716172911026324,
     "lon": 37.1476888902673,
     "images": [
-      "Electricity_and_electronic_laboratory.heic",
-      "Electricity_and_electronic_laboratory_1.heic",
-      "Electricity_and_electronics_workshop.heic",
-      "Electronics_lab.heic",
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic",
-      "Sl_lab_building.heic",
-      "Twin_lab_back.heic",
-      "Twin_lab_back_1.heic",
-      "Twin_lab_front_1.heic",
-      "Twin_lab_front_2.heic",
-      "Twin_lab_front_view.heic",
-      "Twin_lab_left_side_view.heic",
-      "Twin_lab_side_view.heic"
+      "/assets/imgs/Electricity_and_electronic_laboratory.heic",
+      "/assets/imgs/Electricity_and_electronic_laboratory_1.heic",
+      "/assets/imgs/Electricity_and_electronics_workshop.heic",
+      "/assets/imgs/Electronics_lab.heic",
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Sl_lab_building.heic",
+      "/assets/imgs/Twin_lab_back.heic",
+      "/assets/imgs/Twin_lab_back_1.heic",
+      "/assets/imgs/Twin_lab_front_1.heic",
+      "/assets/imgs/Twin_lab_front_2.heic",
+      "/assets/imgs/Twin_lab_front_view.heic",
+      "/assets/imgs/Twin_lab_left_side_view.heic",
+      "/assets/imgs/Twin_lab_side_view.heic"
     ]
   },
   {
@@ -578,21 +578,21 @@
     "lat": -0.715989028187244,
     "lon": 37.1481808398834,
     "images": [
-      "Electricity_and_electronic_laboratory.heic",
-      "Electricity_and_electronic_laboratory_1.heic",
-      "Electricity_and_electronics_workshop.heic",
-      "Electronics_lab.heic",
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic",
-      "Sl_lab_building.heic",
-      "Twin_lab_back.heic",
-      "Twin_lab_back_1.heic",
-      "Twin_lab_front_1.heic",
-      "Twin_lab_front_2.heic",
-      "Twin_lab_front_view.heic",
-      "Twin_lab_left_side_view.heic",
-      "Twin_lab_side_view.heic"
+      "/assets/imgs/Electricity_and_electronic_laboratory.heic",
+      "/assets/imgs/Electricity_and_electronic_laboratory_1.heic",
+      "/assets/imgs/Electricity_and_electronics_workshop.heic",
+      "/assets/imgs/Electronics_lab.heic",
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Sl_lab_building.heic",
+      "/assets/imgs/Twin_lab_back.heic",
+      "/assets/imgs/Twin_lab_back_1.heic",
+      "/assets/imgs/Twin_lab_front_1.heic",
+      "/assets/imgs/Twin_lab_front_2.heic",
+      "/assets/imgs/Twin_lab_front_view.heic",
+      "/assets/imgs/Twin_lab_left_side_view.heic",
+      "/assets/imgs/Twin_lab_side_view.heic"
     ]
   },
   {
@@ -603,7 +603,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -614,20 +614,20 @@
     "lat": -0.716080444390893,
     "lon": 37.1474757493042,
     "images": [
-      "Directory_block_office_side.heic",
-      "Directory_office_side.heic",
-      "Directory_office_side_2.heic",
-      "Examination_office.heic",
-      "Examination_office_1.heic",
-      "Examinations_office_2.heic",
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic",
-      "Security_office.heic",
-      "Tuition_offices.heic"
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Directory_office_side.heic",
+      "/assets/imgs/Directory_office_side_2.heic",
+      "/assets/imgs/Examination_office.heic",
+      "/assets/imgs/Examination_office_1.heic",
+      "/assets/imgs/Examinations_office_2.heic",
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic",
+      "/assets/imgs/Security_office.heic",
+      "/assets/imgs/Tuition_offices.heic"
     ]
   },
   {
@@ -638,12 +638,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -654,12 +654,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -670,9 +670,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -683,9 +683,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -696,9 +696,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -709,12 +709,12 @@
     "lat": -0.71605490565446,
     "lon": 37.1494023368553,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -725,12 +725,12 @@
     "lat": -0.71605490565446,
     "lon": 37.1494023368553,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -741,12 +741,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -757,12 +757,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -773,12 +773,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -789,7 +789,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -800,11 +800,11 @@
     "lat": -0.716471276274463,
     "lon": 37.1490195719472,
     "images": [
-      "Electricity_and_electronics_workshop.heic",
-      "Wood_work_shop.heic",
-      "Wood_work_shop_1.heic",
-      "Wood_workshop.heic",
-      "Wood_workshop_main.heic"
+      "/assets/imgs/Electricity_and_electronics_workshop.heic",
+      "/assets/imgs/Wood_work_shop.heic",
+      "/assets/imgs/Wood_work_shop_1.heic",
+      "/assets/imgs/Wood_workshop.heic",
+      "/assets/imgs/Wood_workshop_main.heic"
     ]
   },
   {
@@ -815,8 +815,8 @@
     "lat": -0.715642843822467,
     "lon": 37.146863452925,
     "images": [
-      "Health_unit.heic",
-      "Health_unit_2.heic"
+      "/assets/imgs/Health_unit.heic",
+      "/assets/imgs/Health_unit_2.heic"
     ]
   },
   {
@@ -827,9 +827,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -840,9 +840,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -853,12 +853,12 @@
     "lat": -0.715897766403863,
     "lon": 37.1470923211146,
     "images": [
-      "Assembly_hall.heic",
-      "Assembly_hall_2.heic",
-      "Milimani_hall_1_side_view.heic",
-      "Milimani_hall_2.heic",
-      "Milimani_hall_2_1.heic",
-      "Milimani_hall_2_front.heic"
+      "/assets/imgs/Assembly_hall.heic",
+      "/assets/imgs/Assembly_hall_2.heic",
+      "/assets/imgs/Milimani_hall_1_side_view.heic",
+      "/assets/imgs/Milimani_hall_2.heic",
+      "/assets/imgs/Milimani_hall_2_1.heic",
+      "/assets/imgs/Milimani_hall_2_front.heic"
     ]
   },
   {
@@ -869,9 +869,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -882,7 +882,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -893,9 +893,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -906,17 +906,17 @@
     "lat": -0.71567213902023,
     "lon": 37.1467173047809,
     "images": [
-      "Drawing_room.heic",
-      "Drawing_room_2.heic",
-      "Interrogation_room.heic",
-      "Interrogation_room_1.heic",
-      "M2_and_m3_rooms.heic",
-      "M2_room.heic",
-      "Room_22_and_21.heic",
-      "Room_23.heic",
-      "Room_23_1.heic",
-      "Room_7_and_8.heic",
-      "Room_7_and_8_1.heic"
+      "/assets/imgs/Drawing_room.heic",
+      "/assets/imgs/Drawing_room_2.heic",
+      "/assets/imgs/Interrogation_room.heic",
+      "/assets/imgs/Interrogation_room_1.heic",
+      "/assets/imgs/M2_and_m3_rooms.heic",
+      "/assets/imgs/M2_room.heic",
+      "/assets/imgs/Room_22_and_21.heic",
+      "/assets/imgs/Room_23.heic",
+      "/assets/imgs/Room_23_1.heic",
+      "/assets/imgs/Room_7_and_8.heic",
+      "/assets/imgs/Room_7_and_8_1.heic"
     ]
   },
   {
@@ -927,9 +927,9 @@
     "lat": -0.716238589957847,
     "lon": 37.147261999763,
     "images": [
-      "Kitchen.heic",
-      "Kitchen_2.heic",
-      "Kitchens.heic"
+      "/assets/imgs/Kitchen.heic",
+      "/assets/imgs/Kitchen_2.heic",
+      "/assets/imgs/Kitchens.heic"
     ]
   },
   {
@@ -940,12 +940,12 @@
     "lat": -0.716201102072584,
     "lon": 37.1475795004628,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -956,12 +956,12 @@
     "lat": -0.716201102072584,
     "lon": 37.1475795004628,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -972,12 +972,12 @@
     "lat": -0.716201102072584,
     "lon": 37.1475795004628,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -988,9 +988,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1001,7 +1001,7 @@
     "lat": -0.715708322553873,
     "lon": 37.1475118366605,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -1012,10 +1012,10 @@
     "lat": -0.71600514809773,
     "lon": 37.1480139383677,
     "images": [
-      "Diploma_class.heic",
-      "Diploma_class_2.heic",
-      "Diploma_class_3.heic",
-      "Diploma_class_4.heic"
+      "/assets/imgs/Diploma_class.heic",
+      "/assets/imgs/Diploma_class_2.heic",
+      "/assets/imgs/Diploma_class_3.heic",
+      "/assets/imgs/Diploma_class_4.heic"
     ]
   },
   {
@@ -1026,10 +1026,10 @@
     "lat": -0.71600514809773,
     "lon": 37.1480139383677,
     "images": [
-      "Diploma_class.heic",
-      "Diploma_class_2.heic",
-      "Diploma_class_3.heic",
-      "Diploma_class_4.heic"
+      "/assets/imgs/Diploma_class.heic",
+      "/assets/imgs/Diploma_class_2.heic",
+      "/assets/imgs/Diploma_class_3.heic",
+      "/assets/imgs/Diploma_class_4.heic"
     ]
   },
   {
@@ -1040,10 +1040,10 @@
     "lat": -0.715989028187244,
     "lon": 37.1481808398834,
     "images": [
-      "Diploma_class.heic",
-      "Diploma_class_2.heic",
-      "Diploma_class_3.heic",
-      "Diploma_class_4.heic"
+      "/assets/imgs/Diploma_class.heic",
+      "/assets/imgs/Diploma_class_2.heic",
+      "/assets/imgs/Diploma_class_3.heic",
+      "/assets/imgs/Diploma_class_4.heic"
     ]
   },
   {
@@ -1054,10 +1054,10 @@
     "lat": -0.715989028187244,
     "lon": 37.1481808398834,
     "images": [
-      "Diploma_class.heic",
-      "Diploma_class_2.heic",
-      "Diploma_class_3.heic",
-      "Diploma_class_4.heic"
+      "/assets/imgs/Diploma_class.heic",
+      "/assets/imgs/Diploma_class_2.heic",
+      "/assets/imgs/Diploma_class_3.heic",
+      "/assets/imgs/Diploma_class_4.heic"
     ]
   },
   {
@@ -1068,10 +1068,10 @@
     "lat": -0.715989028187244,
     "lon": 37.1481808398834,
     "images": [
-      "Diploma_class.heic",
-      "Diploma_class_2.heic",
-      "Diploma_class_3.heic",
-      "Diploma_class_4.heic"
+      "/assets/imgs/Diploma_class.heic",
+      "/assets/imgs/Diploma_class_2.heic",
+      "/assets/imgs/Diploma_class_3.heic",
+      "/assets/imgs/Diploma_class_4.heic"
     ]
   },
   {
@@ -1082,10 +1082,10 @@
     "lat": -0.71600514809773,
     "lon": 37.1480139383677,
     "images": [
-      "Diploma_class.heic",
-      "Diploma_class_2.heic",
-      "Diploma_class_3.heic",
-      "Diploma_class_4.heic"
+      "/assets/imgs/Diploma_class.heic",
+      "/assets/imgs/Diploma_class_2.heic",
+      "/assets/imgs/Diploma_class_3.heic",
+      "/assets/imgs/Diploma_class_4.heic"
     ]
   },
   {
@@ -1096,8 +1096,8 @@
     "lat": -0.715755378182724,
     "lon": 37.1467534236978,
     "images": [
-      "M2_and_m3_rooms.heic",
-      "M2_room.heic"
+      "/assets/imgs/M2_and_m3_rooms.heic",
+      "/assets/imgs/M2_room.heic"
     ]
   },
   {
@@ -1108,7 +1108,7 @@
     "lat": -0.715754610511044,
     "lon": 37.146763572883,
     "images": [
-      "M2_and_m3_rooms.heic"
+      "/assets/imgs/M2_and_m3_rooms.heic"
     ]
   },
   {
@@ -1119,8 +1119,8 @@
     "lat": -0.715989028187244,
     "lon": 37.1481808398834,
     "images": [
-      "Mechanical_workshop_1.heic",
-      " Mechanical_workshop_2.heic"
+      "/assets/imgs/Mechanical_workshop_1.heic",
+      "/assets/imgs/ Mechanical_workshop_2.heic"
     ]
   },
   {
@@ -1131,11 +1131,11 @@
     "lat": -0.716582219177839,
     "lon": 37.1493884622318,
     "images": [
-      "Electricity_and_electronics_workshop.heic",
-      "Wood_work_shop.heic",
-      "Wood_work_shop_1.heic",
-      "Wood_workshop.heic",
-      "Wood_workshop_main.heic"
+      "/assets/imgs/Electricity_and_electronics_workshop.heic",
+      "/assets/imgs/Wood_work_shop.heic",
+      "/assets/imgs/Wood_work_shop_1.heic",
+      "/assets/imgs/Wood_workshop.heic",
+      "/assets/imgs/Wood_workshop_main.heic"
     ]
   },
   {
@@ -1146,9 +1146,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -1159,12 +1159,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -1175,12 +1175,12 @@
     "lat": -0.715897766403863,
     "lon": 37.1470923211146,
     "images": [
-      "Assembly_hall.heic",
-      "Assembly_hall_2.heic",
-      "Milimani_hall_1_side_view.heic",
-      "Milimani_hall_2.heic",
-      "Milimani_hall_2_1.heic",
-      "Milimani_hall_2_front.heic"
+      "/assets/imgs/Assembly_hall.heic",
+      "/assets/imgs/Assembly_hall_2.heic",
+      "/assets/imgs/Milimani_hall_1_side_view.heic",
+      "/assets/imgs/Milimani_hall_2.heic",
+      "/assets/imgs/Milimani_hall_2_1.heic",
+      "/assets/imgs/Milimani_hall_2_front.heic"
     ]
   },
   {
@@ -1191,9 +1191,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -1204,10 +1204,10 @@
     "lat": -0.716534769966746,
     "lon": 37.1471006353423,
     "images": [
-      "Milimani_hall_1_side_view.heic",
-      "Milimani_hall_2.heic",
-      "Milimani_hall_2_1.heic",
-      "Milimani_hall_2_front.heic"
+      "/assets/imgs/Milimani_hall_1_side_view.heic",
+      "/assets/imgs/Milimani_hall_2.heic",
+      "/assets/imgs/Milimani_hall_2_1.heic",
+      "/assets/imgs/Milimani_hall_2_front.heic"
     ]
   },
   {
@@ -1218,10 +1218,10 @@
     "lat": -0.716620681953937,
     "lon": 37.1469051776548,
     "images": [
-      "Milimani_hall_1_side_view.heic",
-      "Milimani_hall_2.heic",
-      "Milimani_hall_2_1.heic",
-      "Milimani_hall_2_front.heic"
+      "/assets/imgs/Milimani_hall_1_side_view.heic",
+      "/assets/imgs/Milimani_hall_2.heic",
+      "/assets/imgs/Milimani_hall_2_1.heic",
+      "/assets/imgs/Milimani_hall_2_front.heic"
     ]
   },
   {
@@ -1232,10 +1232,10 @@
     "lat": -0.71615022728965,
     "lon": 37.1481068721662,
     "images": [
-      "Diploma_class.heic",
-      "Diploma_class_2.heic",
-      "Diploma_class_3.heic",
-      "Diploma_class_4.heic"
+      "/assets/imgs/Diploma_class.heic",
+      "/assets/imgs/Diploma_class_2.heic",
+      "/assets/imgs/Diploma_class_3.heic",
+      "/assets/imgs/Diploma_class_4.heic"
     ]
   },
   {
@@ -1246,7 +1246,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -1257,7 +1257,7 @@
     "lat": -0.715739395811025,
     "lon": 37.147603742602,
     "images": [
-      "Library_offices.heic"
+      "/assets/imgs/Library_offices.heic"
     ]
   },
   {
@@ -1268,9 +1268,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -1281,9 +1281,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1294,9 +1294,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1307,9 +1307,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1320,9 +1320,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -1333,9 +1333,9 @@
     "lat": -0.716457052825824,
     "lon": 37.1500314123941,
     "images": [
-      "Plumbing_department.heic",
-      "Plumbing_department_1.heic",
-      "Plumbing_department_2.heic"
+      "/assets/imgs/Plumbing_department.heic",
+      "/assets/imgs/Plumbing_department_1.heic",
+      "/assets/imgs/Plumbing_department_2.heic"
     ]
   },
   {
@@ -1346,9 +1346,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1359,9 +1359,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1372,9 +1372,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -1385,9 +1385,9 @@
     "lat": -0.715491310829465,
     "lon": 37.1486692501281,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -1398,12 +1398,12 @@
     "lat": -0.715897766403863,
     "lon": 37.1470923211146,
     "images": [
-      "Assembly_hall.heic",
-      "Assembly_hall_2.heic",
-      "Milimani_hall_1_side_view.heic",
-      "Milimani_hall_2.heic",
-      "Milimani_hall_2_1.heic",
-      "Milimani_hall_2_front.heic"
+      "/assets/imgs/Assembly_hall.heic",
+      "/assets/imgs/Assembly_hall_2.heic",
+      "/assets/imgs/Milimani_hall_1_side_view.heic",
+      "/assets/imgs/Milimani_hall_2.heic",
+      "/assets/imgs/Milimani_hall_2_1.heic",
+      "/assets/imgs/Milimani_hall_2_front.heic"
     ]
   },
   {
@@ -1414,9 +1414,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1427,9 +1427,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1440,9 +1440,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1453,9 +1453,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1466,12 +1466,12 @@
     "lat": -0.716201102072584,
     "lon": 37.1475795004628,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -1482,12 +1482,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -1498,12 +1498,12 @@
     "lat": -0.715910872348077,
     "lon": 37.1492594928733,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -1514,11 +1514,11 @@
     "lat": -0.716098486660879,
     "lon": 37.1474171073471,
     "images": [
-      "Building_department.heic",
-      "Building_department_1.heic",
-      "Building_department_2.heic",
-      "Procurement_department.heic",
-      "Security_office.heic"
+      "/assets/imgs/Building_department.heic",
+      "/assets/imgs/Building_department_1.heic",
+      "/assets/imgs/Building_department_2.heic",
+      "/assets/imgs/Procurement_department.heic",
+      "/assets/imgs/Security_office.heic"
     ]
   },
   {
@@ -1529,9 +1529,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1542,9 +1542,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1555,12 +1555,12 @@
     "lat": -0.716201102072584,
     "lon": 37.1475795004628,
     "images": [
-      "School_of_business_and_economics.heic",
-      "School_of_business_and_economics2.heic",
-      "School_of_business_and_economics_side.heic",
-      "School_of_business_and_economics_side2.heic",
-      "School_of_hospitality_and_tourism_management.heic",
-      "School_of_hospitality_and_tourism_management2.heic"
+      "/assets/imgs/School_of_business_and_economics.heic",
+      "/assets/imgs/School_of_business_and_economics2.heic",
+      "/assets/imgs/School_of_business_and_economics_side.heic",
+      "/assets/imgs/School_of_business_and_economics_side2.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management.heic",
+      "/assets/imgs/School_of_hospitality_and_tourism_management2.heic"
     ]
   },
   {
@@ -1571,9 +1571,9 @@
     "lat": -0.716085346673408,
     "lon": 37.1494624299436,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front_2.heic",
-      "Science_laboratory_front.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic",
+      "/assets/imgs/Science_laboratory_front.heic"
     ]
   },
   {
@@ -1584,7 +1584,7 @@
     "lat": -0.716157412153668,
     "lon": 37.1495932959047,
     "images": [
-      "Sl_lab_building.heic"
+      "/assets/imgs/Sl_lab_building.heic"
     ]
   },
   {
@@ -1595,9 +1595,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1608,7 +1608,7 @@
     "lat": -0.716279733826011,
     "lon": 37.1484894699614,
     "images": [
-      "Centeral_stores.heic"
+      "/assets/imgs/Centeral_stores.heic"
     ]
   },
   {
@@ -1619,9 +1619,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1632,9 +1632,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1645,11 +1645,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1660,11 +1660,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1675,11 +1675,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1690,11 +1690,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1705,11 +1705,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1720,11 +1720,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1735,11 +1735,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1750,11 +1750,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1765,11 +1765,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1780,11 +1780,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1795,11 +1795,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1810,11 +1810,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1825,11 +1825,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1840,11 +1840,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1855,11 +1855,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1870,11 +1870,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1885,11 +1885,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1900,11 +1900,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1915,11 +1915,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1930,11 +1930,11 @@
     "lat": -0.714905293819692,
     "lon": 37.1481998635532,
     "images": [
-      "Directory_block_front.heic",
-      "Directory_block_office_side.heic",
-      "Tuition_block_back.heic",
-      "Tuition_block_back_1.heic",
-      "Tuition_block_back_2.heic"
+      "/assets/imgs/Directory_block_front.heic",
+      "/assets/imgs/Directory_block_office_side.heic",
+      "/assets/imgs/Tuition_block_back.heic",
+      "/assets/imgs/Tuition_block_back_1.heic",
+      "/assets/imgs/Tuition_block_back_2.heic"
     ]
   },
   {
@@ -1945,8 +1945,8 @@
     "lat": -0.716537652370977,
     "lon": 37.1488488772122,
     "images": [
-      "Drawing_room.heic",
-      "Drawing_room_2.heic"
+      "/assets/imgs/Drawing_room.heic",
+      "/assets/imgs/Drawing_room_2.heic"
     ]
   },
   {
@@ -1966,9 +1966,9 @@
     "lat": -0.71555365262092,
     "lon": 37.1484095240825,
     "images": [
-      "Science_laboratory_back.heic",
-      "Science_laboratory_front.heic",
-      "Science_laboratory_front_2.heic"
+      "/assets/imgs/Science_laboratory_back.heic",
+      "/assets/imgs/Science_laboratory_front.heic",
+      "/assets/imgs/Science_laboratory_front_2.heic"
     ]
   },
   {
@@ -1979,10 +1979,10 @@
     "lat": -0.716159308616341,
     "lon": 37.1490698320652,
     "images": [
-      "Wood_work_shop.heic",
-      "Wood_work_shop_1.heic",
-      "Wood_workshop.heic",
-      "Wood_workshop_main.heic"
+      "/assets/imgs/Wood_work_shop.heic",
+      "/assets/imgs/Wood_work_shop_1.heic",
+      "/assets/imgs/Wood_workshop.heic",
+      "/assets/imgs/Wood_workshop_main.heic"
     ]
   }
 ]
