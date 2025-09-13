@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing the files
-TARGET_DIR="React App/src/assets/MuT 2 photos"
+TARGET_DIR="React App/src/assets/imgs"
 
 # Change to the target directory
 cd "$TARGET_DIR" || { echo "Directory not found"; exit 1; }
